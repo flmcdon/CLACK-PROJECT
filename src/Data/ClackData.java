@@ -34,7 +34,6 @@ public abstract class ClackData {
     //Default Constructor for ClackData
     public ClackData() {
         this("Anon", 0);
-        this.date = new Date();
     }
 
     //Method to return type

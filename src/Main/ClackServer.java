@@ -25,15 +25,16 @@ public class ClackServer {
     };
 
     //Constructor for ClackServer that takes a port variable
-    public void ClackServer( int port ){
+    public ClackServer( int port ){
         this.port = port;
         this.dataToReceiveFromClient = null;
         this.dataToSendToClient = null;
     }
     //Default Constructor for ClackServer that set port default to 7000
-    public void ClackServer(){
-        this.ClackServer(defPort);
+    public ClackServer(){
+        this.port = defPort;
     }
+
     //Method for start - temporarily empty
     public void start(){
 

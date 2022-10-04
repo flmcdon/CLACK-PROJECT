@@ -32,7 +32,7 @@ public class ClackClient {
     };
 
     //Constructor that takes userName, hostName, port, and connection. Sets dataToSendToServer and dataToReceiveFromServer as null.
-    public void ClackClient(String userName, String hostName, int port){
+    public ClackClient(String userName, String hostName, int port){
         this.userName = userName;
         this.hostName = hostName;
         this.port = port;
@@ -40,8 +40,16 @@ public class ClackClient {
         dataToReceiveFromServer = null;
     }
 
-    public void ClackClient (String userName, String hostName){
-        this.ClackClient(userName,hostName,7000);
+    public  ClackClient (String userName, String hostName){
+        this(userName,hostName,7000);
+    }
+
+    public ClackClient (String username){
+        this.hostName = "localhost";
+    }
+
+    public ClackClient (){
+        super();
     }
 
     //Method to start
@@ -99,8 +107,8 @@ public class ClackClient {
 
     public String toString(){
         return "This class is called the ClackClient class." + "\n " +
-                " It is responsible for overwriting," + "\n" +
-                " Hashcode(), equals() and this toString() method. " +"\n" +
+                "It is responsible for overwriting," + "\n" +
+                "Hashcode(), equals() and this toString() method. " +"\n" +
                 "This class also sets up constructors for" + "Clackclient" + "\n" +
                 "It also inherits from Clack Data." + "\n" +
                 "This class uses instance variables port, username, and hostname";

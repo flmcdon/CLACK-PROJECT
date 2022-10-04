@@ -7,14 +7,14 @@ public class FileClackData extends ClackData {
     private String fileContents;
 
     //Constructor for FileClackData that takes userName, fileName, and type
-    public void FileClackData (String userName, String fileName, int type){
-        super.ClackData(userName, type);
+    public FileClackData (String userName, String fileName, int type){
+        super(userName, type);
         this.fileName = fileName;
     }
 
     //Default constructor for FileClackData
-    public void FileClackData() {
-        super.ClackData();
+    public FileClackData() {
+        super();
         this.fileName = fileName;
     }
 
@@ -55,8 +55,7 @@ public class FileClackData extends ClackData {
 
     //Overwritten hashcode function
     public int hashCode() {
-        String.str;
-        str.hashCode();
+        return hashCode();
     }
 
     //Overwritten equals code
