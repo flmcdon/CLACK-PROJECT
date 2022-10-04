@@ -54,8 +54,7 @@ public class ClackServer {
 
     //Overwritten hashCode method
     public int hashCode(){
-        String.str;
-        str.hashCode();
+        return 0x400;
     }
     //Overwritten equals method
     public boolean equals(ClackServer other){

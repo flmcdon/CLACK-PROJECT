@@ -41,7 +41,7 @@ public class ClackClient {
     }
 
     public void ClackClient (String userName, String hostName){
-        super.ClackClient(userName,hostName,7000);
+        this.ClackClient(userName,hostName,7000);
     }
 
     //Method to start

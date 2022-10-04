@@ -19,21 +19,21 @@ public abstract class ClackData {
     private Date date;
 
     //Constructor for ClackData with username and type provided
-    public void ClackData(String userName, int type){
+    public ClackData(String userName, int myType){
 
         this.username = userName;
-        this.type = type;
+        this.type = myType;
         this.date = new Date();
 
     }
     //Constructor for ClackData with type provided
-    public void ClackData (int type) {
-        this.ClackData("Anon" , type);
+    public ClackData (int myType) {
+        this("Anon" , 0);
     }
 
     //Default Constructor for ClackData
-    public void ClackData() {
-        this.ClackData("Anon", CONSTANT_LISTUSERS);
+    public ClackData() {
+        this("Anon", 0);
         this.date = new Date();
     }
 
