@@ -4,17 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a56a04fc-9b7e-4cad-a7f0-3e117f70d0d6" name="Changes" comment="ClackData working">
-      <change afterPath="$PROJECT_DIR$/src/Test/TestClackClient.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Test/TestClackServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Data/ClackData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Data/ClackData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Data/FileClackData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Data/FileClackData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Data/MessageClackData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Data/MessageClackData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main/ClackClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main/ClackClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main/ClackServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main/ClackServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Test/TestClackData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Test/TestClackData.java" afterDir="false" />
-    </list>
+    <list default="true" id="a56a04fc-9b7e-4cad-a7f0-3e117f70d0d6" name="Changes" comment="Full Code" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -72,7 +62,14 @@
       <option name="project" value="LOCAL" />
       <updated>1664909672180</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Full Code">
+      <created>1664925636340</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1664925636340</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -88,6 +85,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="ClackData working" />
-    <option name="LAST_COMMIT_MESSAGE" value="ClackData working" />
+    <MESSAGE value="Full Code" />
+    <option name="LAST_COMMIT_MESSAGE" value="Full Code" />
   </component>
 </project>
