@@ -4,14 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a56a04fc-9b7e-4cad-a7f0-3e117f70d0d6" name="Changes" comment="Full Code">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Data/FileClackData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Data/FileClackData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Data/MessageClackData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Data/MessageClackData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main/ClackClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main/ClackClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main/ClackServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main/ClackServer.java" afterDir="false" />
-    </list>
+    <list default="true" id="a56a04fc-9b7e-4cad-a7f0-3e117f70d0d6" name="Changes" comment="corrections on part 1" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -37,6 +30,9 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GithubDefaultAccount">
+    <option name="defaultAccountId" value="14202df1-7a44-4294-b885-9cec9f0b071e" />
+  </component>
   <component name="GithubPullRequestsUISettings">
     <option name="selectedUrlAndAccountId">
       <UrlAndAccount>
@@ -58,7 +54,8 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "C:/Users/damoo/OneDrive/Documents/School/Fall 2022/CS 242/CLACK-PROJECT"
+    "last_opened_file_path": "C:/Users/damoo/OneDrive/Documents/School/Fall 2022/CS 242/CLACK-PROJECT",
+    "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -103,7 +100,14 @@
       <option name="project" value="LOCAL" />
       <updated>1664926383179</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="corrections on part 1">
+      <created>1666625769171</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1666625769171</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -120,6 +124,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="ClackData working" />
     <MESSAGE value="Full Code" />
-    <option name="LAST_COMMIT_MESSAGE" value="Full Code" />
+    <MESSAGE value="corrections on part 1" />
+    <option name="LAST_COMMIT_MESSAGE" value="corrections on part 1" />
   </component>
 </project>
