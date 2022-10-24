@@ -5,10 +5,11 @@ import Data.ClackData;
 //Class declaration for ClackServer
 public class ClackServer {
 
+    private static final int DEFAULT_PORT = 7000;
+
     //Declaration of local variables
     public int port;
     public boolean closeConnection;
-    public final int defPort = 7000;
 
     ClackData dataToReceiveFromClient = new ClackData() {
 
@@ -32,7 +33,7 @@ public class ClackServer {
     }
     //Default Constructor for ClackServer that set port default to 7000
     public ClackServer(){
-        this.port = defPort;
+        this.port = DEFAULT_PORT;
     }
 
     //Method for start - temporarily empty
@@ -58,11 +59,11 @@ public class ClackServer {
         return 0x400;
     }
     //Overwritten equals method
-    public boolean equals(ClackServer other){
-        return
-                this.port == other.port &&
-                        this.dataToSendToClient == other.dataToSendToClient &&
-                        this.dataToReceiveFromClient == other.dataToReceiveFromClient;
+    public boolean equals(Object other){
+        ClackServer otherClackServer = (ClackServer)other;
+        return this.port == otherClackServer.port
+                && this.dataToSendToClient == otherClackServer.dataToSendToClient
+                && this.dataToReceiveFromClient == otherClackServer.dataToReceiveFromClient;
     }
 
     //Overwritten toString method

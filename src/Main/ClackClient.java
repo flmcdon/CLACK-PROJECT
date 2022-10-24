@@ -6,11 +6,12 @@ import Data.ClackData;
 //Class declaration for ClackClient
 public class ClackClient {
 
+    private static final int DEFAULT_PORT = 7000;
+
     //Local variable declaration
     public String userName;
     public String hostName;
     public int port;
-    public int defaultPort = 7000;
     public boolean closeConnection;
 
     //ClackData object representing data sent to server
@@ -98,11 +99,11 @@ public class ClackClient {
     }
 
     //Overwritten equals method
-    public boolean equals(ClackClient other){
-        return
-                this.port == other.port &&
-                        this.userName == other.userName &&
-                        this.hostName == other.hostName;
+    public boolean equals(Object other){
+        ClackClient otherClackClient = (ClackClient)other;
+        return this.port == otherClackClient.port
+                && this.userName == otherClackClient.userName
+                && this.hostName == otherClackClient.hostName;
     }
 
     public String toString(){

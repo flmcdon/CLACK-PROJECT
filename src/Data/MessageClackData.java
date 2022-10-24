@@ -29,9 +29,10 @@ public class MessageClackData extends ClackData {
     }
 
     //Overwritten equals method
-    public boolean equals(MessageClackData other){
+    public boolean equals(Object other){
+        MessageClackData otherMessageClackData = (MessageClackData) other;
         return
-                this.message == other.message;
+                this.message == otherMessageClackData.message;
     }
     //Overwritten toString method
     public String toString(){

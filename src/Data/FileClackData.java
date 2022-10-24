@@ -59,8 +59,9 @@ public class FileClackData extends ClackData {
     }
 
     //Overwritten equals code
-    public boolean equals(FileClackData other){
-        return this.fileName == other.fileName && this.fileContents == other.fileContents;
+    public boolean equals(Object other){
+        FileClackData otherFileClackData = (FileClackData)other;
+        return this.fileName == otherFileClackData.fileName && this.fileContents == otherFileClackData.fileContents;
     }
 
 }
