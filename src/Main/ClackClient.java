@@ -2,8 +2,10 @@ package Main;
 
 import Data.ClackData;
 import Data.FileClackData;
+import Data.MessageClackData;
 
 import java.util.Objects;
+import java.util.Scanner;
 
 /**
  * The ClackClient class represents the client user. A ClackClient object contains the username,
@@ -78,14 +80,31 @@ public class ClackClient {
      * For now, it should have no code, just a declaration.
      */
     public void start() {
+        Scanner inFromStd = new Scanner(System.in);
+
     }
 
     /**
      * Reads the data from the client.
-     * Does not return anything.
-     * For now, it should have no code, just a declaration.
+     * This takes data from a client and depending on their input,
+     * closes the connection,
+     * attempts to read the file,
+     * sends a message,
+     * or nothing.
      */
     public void readClientData() {
+        while (inFromStd.hasNext()){
+            String userInput = inFromStd.next();
+            if (userInput == "Done"){
+                closeConnection = true;
+            }else if(userInput == ("SENDFILE" + fileName)){                //not sure how to implement file name
+                FileClackData(dataToSendToServer,fileName);
+            }else if (userInput == "LISTUSERS"){
+
+            }else{
+                super
+            }
+        }
     }
 
     /**
@@ -145,7 +164,7 @@ public class ClackClient {
 
         int result = 23;
 
-        // It is okay to select only some of the instance variables to calculate the hash code
+        // It is okay to select only  instance variables to calculate the hash code
         // but must use the same instance variables with equals() to maintain consistency.
         result = 31 * result + Objects.hashCode(this.userName);
         result = 31 * result + Objects.hashCode(this.hostName);
@@ -170,7 +189,7 @@ public class ClackClient {
         ClackClient otherClackClient = (ClackClient) other;
 
         // Compares all comparable instance variables of both ClackClient objects that determine uniqueness.
-        // It is okay to select only some of the instance variables for comparison but must use the same
+        // It is okay to select only instance variables for comparison but must use the same
         // instance variables with hashCode() to maintain consistency.
         return this.userName.equals(otherClackClient.userName) &&
                 this.hostName.equals(otherClackClient.hostName) &&
