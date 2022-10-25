@@ -80,12 +80,10 @@ public class ClackClient {
      *
      */
     public void start() {
-        inFromStd = new Scanner(System.in);
-        while( inFromStd.hasNext()){
-            String nextString = scan.nex
+
         }
 
-    }
+
 
     /**
      * Reads the data from the client.
