@@ -6,12 +6,11 @@ import Data.ClackData;
 //Class declaration for ClackClient
 public class ClackClient {
 
-    private static final int DEFAULT_PORT = 7000;
-
     //Local variable declaration
     public String userName;
     public String hostName;
     public int port;
+    public int defaultPort = 7000;
     public boolean closeConnection;
 
     //ClackData object representing data sent to server
@@ -33,7 +32,7 @@ public class ClackClient {
     };
 
     //Constructor that takes userName, hostName, port, and connection. Sets dataToSendToServer and dataToReceiveFromServer as null.
-    public ClackClient(String userName, String hostName, int port){
+    public void ClackClient(String userName, String hostName, int port){
         this.userName = userName;
         this.hostName = hostName;
         this.port = port;
@@ -41,16 +40,8 @@ public class ClackClient {
         dataToReceiveFromServer = null;
     }
 
-    public  ClackClient (String userName, String hostName){
-        this(userName,hostName,7000);
-    }
-
-    public ClackClient (String username){
-        this.hostName = "localhost";
-    }
-
-    public ClackClient (){
-        super();
+    public void ClackClient (String userName, String hostName){
+        super.ClackClient(userName,hostName,7000);
     }
 
     //Method to start
@@ -99,17 +90,17 @@ public class ClackClient {
     }
 
     //Overwritten equals method
-    public boolean equals(Object other){
-        ClackClient otherClackClient = (ClackClient)other;
-        return this.port == otherClackClient.port
-                && this.userName == otherClackClient.userName
-                && this.hostName == otherClackClient.hostName;
+    public boolean equals(ClackClient other){
+        return
+                this.port == other.port &&
+                        this.userName == other.userName &&
+                        this.hostName == other.hostName;
     }
 
     public String toString(){
         return "This class is called the ClackClient class." + "\n " +
-                "It is responsible for overwriting," + "\n" +
-                "Hashcode(), equals() and this toString() method. " +"\n" +
+                " It is responsible for overwriting," + "\n" +
+                " Hashcode(), equals() and this toString() method. " +"\n" +
                 "This class also sets up constructors for" + "Clackclient" + "\n" +
                 "It also inherits from Clack Data." + "\n" +
                 "This class uses instance variables port, username, and hostname";

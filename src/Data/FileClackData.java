@@ -1,67 +1,128 @@
 package Data;
 
+import java.util.Objects;
 //Class declaration for FileClackData inheriting ClackData
+/**
+ * The child of ClackData, whose data is the name and contents of a file.
+ *
+ *
+ */
 public class FileClackData extends ClackData {
     //Declaration of local  variables
     private String fileName;
     private String fileContents;
 
-    //Constructor for FileClackData that takes userName, fileName, and type
-    public FileClackData (String userName, String fileName, int type){
+    /**
+     * The constructor to set up the instance variables username, fileName, and type.
+     * Should call the super constructor.
+     * The instance variable fileContents should be initialized to be null.
+     *
+     * @param userName a string representing the name of the client user
+     * @param filename a string representing the name of a file
+     * @param type     an int representing the data type
+     */
+    public FileClackData(String userName, String filename, int type) {
         super(userName, type);
         this.fileName = fileName;
+        this.fileContents = null;
     }
 
-    //Default constructor for FileClackData
+
+    /**
+     * The default constructor.
+     * This constructor should call the super constructor.
+     */
     public FileClackData() {
-        super();
-        this.fileName = fileName;
+        super(ClackData.CONSTANT_SENDFILE);
+        this.fileName = "";
+        this.fileContents = null;
     }
 
-    //Method to set file name
+    /**
+     * Sets the file name in this object.
+     *
+     * @param fileName a string representing the name of a file
+     */
     public void setFileName(String fileName){
         this.fileName = fileName;
     }
 
-    //Method to return file name
+    /**
+     * Returns the file name.
+     *
+     * @return this.fileName
+     */
     public String getFileName(){
         return this.fileName;
     }
 
-    //Method to return the contents of get data, overrides a previous getData method.
+    /**
+     * Returns the file contents.
+     *
+     * @return this.fileContent
+     */
     public String getData() {
         return this.fileContents;
     }
 
-    //Temporarily empty method to read file contents
+    /**
+     * Reads the file contents.
+     * Does not return anything.
+     * For now, it should have no code, just a declaration.
+     */
     public void readFileContents() {
 
     }
 
-    //Temporarily empty method to write the file contents
+    /**
+     * Writes the file contents.
+     * Does not return anything.
+     * For now, it should have no code, just a declaration.
+     */
     public void writeFileContents(){
 
     }
 
-    //Overwritten toString function
+    @Override
     public String toString() {
-        return "This class is called the FileClackData class." + "\n " +
-                " It is responsible for overwriting," + "\n" +
-                " Hashcode(), equals() and this toString() method. " +"\n" +
-                "This class also sets up constructors for" + "FileClackData." + "\n" +
-                "It also inherits from Clack Data." + "\n" +
-                "Both classes use the instance variables username and type";
+        // Should return a full description of the class with all instance variables,
+        // including those in the super class.
+        return "This instance of FileClackData has the following properties:\n"
+                + "Username: " + this.username + "\n"
+                + "Type: " + this.type + "\n"
+                + "Date: " + this.date.toString() + "\n"
+                + "File Name: " + this.fileName + "\n"
+                + "File Contents: " + this.fileContents + "\n";
     }
 
-    //Overwritten hashcode function
+    @Override
     public int hashCode() {
-        return hashCode();
+        // The following is only one of many possible implementations to generate the hash code.
+        // See the hashCode() method in other classes for some different implementations.
+        // It is okay to select only some of the instance variables to calculate the hash code
+        // but must use the same instance variables with equals() to maintain consistency.
+        return Objects.hash(this.username, this.type, this.fileName, this.fileContents);
     }
 
-    //Overwritten equals code
-    public boolean equals(Object other){
-        FileClackData otherFileClackData = (FileClackData)other;
-        return this.fileName == otherFileClackData.fileName && this.fileContents == otherFileClackData.fileContents;
-    }
 
+    @Override
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        }
+        if (!(other instanceof FileClackData)) {
+            return false;
+        }
+
+        // Casts other to be a FileClackData to access its instance variables.
+        FileClackData otherFileClackData = (FileClackData) other;
+
+        // Compares the selected instance variables of both FileClackData objects that determine uniqueness.
+        // It is okay to select only instance variables for comparison but must use the same
+        // instance variables with hashCode() to maintain consistency.
+        return this.username.equals(otherFileClackData.username)
+                && this.type == otherFileClackData.type
+                && Objects.equals(this.fileName, otherFileClackData.fileName)
+                && Objects.equals(this.fileContents, otherFileClackData.fileContents);
+    }
 }
