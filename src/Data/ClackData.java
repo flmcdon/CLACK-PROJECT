@@ -69,8 +69,8 @@ public abstract class ClackData {
      *
      * @param type an int representing the data type
      */
-    public ClackData (int type) {
-        this("userName",type);
+    public ClackData(int type) {
+        this("userName", type);
     }
 
     /**
@@ -78,7 +78,7 @@ public abstract class ClackData {
      * This constructor should call another constructor.
      * type should get defaulted to CONSTANT_LOGOUT.
      */
-    public  ClackData() {
+    public ClackData() {
         this(CONSTANT_LOGOUT);
     }
 
@@ -88,7 +88,7 @@ public abstract class ClackData {
      * @return this.type
      */
     public int getType() {
-        return  this.type;
+        return this.type;
     }
 
     /**
@@ -115,14 +115,8 @@ public abstract class ClackData {
      *
      * @return data
      */
-    public abstract String getData();
 
-    /**
-     * The protected method to take a string and encrypt it. It outputs the encrypted string
-     *
-     *
-     */
-    protected String encrypt (String inputStringToEncrypt, String key) {
+    protected String encrypt(String inputStringToEncrypt, String key) {
         Scanner scan = new Scanner(System.in);
         while (scan.hasNext()) {
             inputStringToEncrypt = scan.next();
@@ -143,32 +137,46 @@ public abstract class ClackData {
             keyword[i] = key.charAt(j);
         }
 
-        for(int i = 0; i < msgLen; ++i){
-            encryptMsg[i] = (char) (((msg[i] + keyword[i])%26)+'A');
+        for (int i = 0; i < msgLen; ++i) {
+            encryptMsg[i] = (char) (((msg[i] + keyword[i]) % 26) + 'A');
         }
 
-        String encrypt = new String (encryptMsg);
+        String encrypt = new String(encryptMsg);
         return encrypt;
     }
 
     /**
      * The protected method the take an input string and decrypt using a key
-     *
      */
 
-    protected String decrypt (String inputStringToDecrypt, String key){
+    protected String decrypt(String inputStringToDecrypt, String key) {
         char msg[] = inputStringToDecrypt.toCharArray();
         int msgLen = msg.length;
 
         char keyword[] = new char[msgLen];
-        char decryptMsg[] = new char [msgLen];
+        char decryptMsg[] = new char[msgLen];
 
-        for(int i = 0; i < msgLen; ++i){
-            decryptMsg[i] = (char) ((((msg[i] - keyword[i])+26)%26)+'A');
+        for (int i = 0; i < msgLen; ++i) {
+            decryptMsg[i] = (char) ((((msg[i] - keyword[i]) + 26) % 26) + 'A');
         }
         String decrypt = new String(decryptMsg);
         return decrypt;
     }
 
-}
+
+    public abstract String getData();
+
+    /**
+     * Overloaded abstract getData
+     */
+
+    public abstract String getData(String key);
+    }
+
+    /**
+     * The protected method to take a string and encrypt it. It outputs the encrypted string
+     *
+     *
+     */
+
 
