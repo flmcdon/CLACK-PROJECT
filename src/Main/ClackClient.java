@@ -99,8 +99,9 @@ public class ClackClient {
      * For now, it should have no code, just a declaration.
      */
     public void start() {
-
-
+        readClientData();
+        dataToSendToServer = dataToReceiveFromServer;
+        printData();
     }
 
     /**
