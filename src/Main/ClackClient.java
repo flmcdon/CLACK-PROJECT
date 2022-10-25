@@ -4,6 +4,7 @@ import Data.ClackData;
 import Data.FileClackData;
 import Data.MessageClackData;
 
+import java.io.File;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -12,6 +13,7 @@ import java.util.Scanner;
  * host name of the server connected to, port number connected to, and a boolean designating
  * whether the connection is open or not. The ClackClient object will also have two ClackData
  * objects representing data sent to the server and data received from the server.
+ *
  *
  */
 public class ClackClient {
@@ -23,8 +25,6 @@ public class ClackClient {
     private boolean closeConnection; // A boolean representing whether the connection is closed or not
     private ClackData dataToSendToServer; // A ClackData object representing the data sent to the server
     private ClackData dataToReceiveFromServer; // A ClackData object representing the data received from the server
-
-    private Scanner inFromStd = new Scanner(System.in);
 
     /**
      * The constructor to set up the username, host name, and port.
@@ -42,6 +42,15 @@ public class ClackClient {
         this.closeConnection = false;
         this.dataToSendToServer = null;
         this.dataToReceiveFromServer = null;
+        if (port < 1024) {
+            throw new IllegalArgumentException("Port cannot be less than 1024");
+        }
+        if (userName == null) {
+            throw new IllegalArgumentException("Username cannot be null");
+        }
+        if (hostName == null) {
+            throw new IllegalArgumentException("Hostname cannot be null");
+        }
     }
 
     /**
@@ -54,6 +63,12 @@ public class ClackClient {
      */
     public ClackClient(String userName, String hostName) {
         this(userName, hostName, DEFAULT_PORT);
+        if (userName == null) {
+            throw new IllegalArgumentException("Username cannot be null");
+        }
+        if (hostName == null) {
+            throw new IllegalArgumentException("Hostname cannot be null");
+        }
     }
 
     /**
@@ -65,6 +80,9 @@ public class ClackClient {
      */
     public ClackClient(String userName) {
         this(userName, "localhost");
+        if (userName == null) {
+            throw new IllegalArgumentException("Username cannot be null");
+        }
     }
 
     /**
@@ -77,13 +95,14 @@ public class ClackClient {
 
     /**
      * Starts the client.
-     *
+     * Does not return anything.
+     * For now, it should have no code, just a declaration.
      */
     public void start() {
-
-        }
-
-
+        readClientData();
+        dataToSendToServer = dataToReceiveFromServer;
+        printData();
+    }
 
     /**
      * Reads the data from the client.
@@ -94,14 +113,15 @@ public class ClackClient {
      * or nothing.
      */
     public void readClientData() {
+        Scanner inFromStd = new Scanner(System.in);
         while (inFromStd.hasNext()){
             String userInput = inFromStd.next();
             if (userInput == "Done"){
                 closeConnection = true;
-            }else if(userInput == ("SENDFILE" + userInput)){                //not sure how to implement file name
-                FileClackData(dataToSendToServer,filename);
+            }else if(userInput == ("SENDFILE" + fileName)){                //not sure how to implement file name
+                FileClackData(dataToSendToServer,fileName);
             }else if (userInput == "LISTUSERS"){
-            //blank for now
+
             }else{
 
             }
@@ -126,10 +146,9 @@ public class ClackClient {
 
     /**
      * Prints the received data to the standard output.
-     *
+     * For now, it should have no code, just a declaration.
      */
     public void printData() {
-        System.out.println("Here is what you wanted printed: " + dataToReceiveFromServer);      //ask about this
     }
 
     /**
@@ -149,6 +168,7 @@ public class ClackClient {
     public String getHostName() {
         return this.hostName;
     }
+
     /**
      * Returns the port.
      *
