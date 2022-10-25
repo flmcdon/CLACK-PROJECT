@@ -1,6 +1,8 @@
 package Data;
 
 import java.util.Objects;
+import java.io.*;
+import java.util.Scanner;
 //Class declaration for FileClackData inheriting ClackData
 /**
  * The child of ClackData, whose data is the name and contents of a file.
@@ -79,7 +81,38 @@ public class FileClackData extends ClackData {
      * For now, it should have no code, just a declaration.
      */
     public void readFileContents() {
+        try{
+            File file = new File (fileName);
+            BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
+            String nextLine;
+            while ((nextLine = bufferedReader.readLine()) != null){
+                fileContents += nextLine;
+            }
+        }catch (FileNotFoundException fnfe) {
+            System.err.println("File does not exist");
+        }catch (IOException ioe) {
+            System.err.println("IOException Occured");
+        }
+    }
 
+    /**
+     * Reads file and encrypts the file contents
+     * @param key
+     */
+    public void readFileContents(String key){
+        try{
+            File file = new File (fileName);
+            BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
+            String nextLine;
+            while ((nextLine = bufferedReader.readLine()) != null){
+                fileContents += nextLine;
+            }
+            encrypt(fileContents,key);
+        }catch (FileNotFoundException fnfe) {
+            System.err.println("File does not exist");
+        }catch (IOException ioe) {
+            System.err.println("IOException Occured");
+        }
     }
 
     /**
@@ -88,9 +121,28 @@ public class FileClackData extends ClackData {
      * For now, it should have no code, just a declaration.
      */
     public void writeFileContents(){
-
+        try{
+            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(fileName));
+            bufferedWriter.write(fileContents);
+            bufferedWriter.close();
+        }catch (IOException ioe) {
+            System.out.println("IO Exception");
+        }
     }
 
+    /**
+     *
+     * @param key
+     */
+    public void writeFileContents (String key) {
+        try{
+            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(fileName));
+            bufferedWriter.write(decrypt(fileContents, key));
+            bufferedWriter.close();
+        }catch (IOException ioe) {
+            System.out.println("IO Exception");
+        }
+    }
     @Override
     public String toString() {
         // Should return a full description of the class with all instance variables,
