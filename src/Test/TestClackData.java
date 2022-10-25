@@ -4,14 +4,20 @@ import Data.FileClackData;
 import Data.MessageClackData;
 import Data.ClackData;
 
-public class TestClackData {
+public abstract class TestClackData extends ClackData {
+
     public static void main (String[] args) {
-        MessageClackData messagecd = new MessageClackData();
-        FileClackData fcd = new FileClackData();
-        System.out.println("Test");
+        ClackData clackData = new MessageClackData("string","string",3);
+        //ClackData fcd = new FileClackData();
+
+
+
+        };
 
 
 
 
     }
-}
+
+
+
