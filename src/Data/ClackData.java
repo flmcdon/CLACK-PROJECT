@@ -5,6 +5,9 @@ import java.util.Date;
 
 //Declare abstract class ClackData
 public abstract class ClackData {
+    /**
+     *
+     */
 
     //Declare final constant ints
     public final int CONSTANT_LISTUSERS = 0;
@@ -18,7 +21,11 @@ public abstract class ClackData {
     private int type;
     private Date date;
 
-    //Constructor for ClackData with username and type provided
+    /**
+     * Constructor for ClackData with username and type provided
+     * @param userName
+     * @param myType
+     */
     public ClackData(String userName, int myType){
 
         this.username = userName;
