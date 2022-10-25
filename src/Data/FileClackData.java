@@ -68,6 +68,14 @@ public class FileClackData extends ClackData {
     }
 
     /**
+     * Overridden get Data method with String key
+     */
+    public String getData(String key){
+        return decrypt(fileContents , key);
+
+    }
+
+    /**
      * Reads the file contents.
      * Does not return anything.
      * For now, it should have no code, just a declaration.

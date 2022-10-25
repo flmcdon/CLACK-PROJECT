@@ -37,6 +37,13 @@ public class MessageClackData extends ClackData {
     }
 
     /**
+     * Overridden get Data method with String key
+     */
+    public String getData(String key){
+        return decrypt(message,key);
+    }
+
+    /**
      * Returns the instant message.
      *
      * @return this.message

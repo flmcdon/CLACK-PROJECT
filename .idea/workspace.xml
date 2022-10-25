@@ -4,8 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a56a04fc-9b7e-4cad-a7f0-3e117f70d0d6" name="Changes" comment="pt 2 step 4">
+    <list default="true" id="a56a04fc-9b7e-4cad-a7f0-3e117f70d0d6" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Data/FileClackData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Data/FileClackData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Data/MessageClackData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Data/MessageClackData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main/ClackClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main/ClackClient.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -92,14 +95,21 @@
       <option name="project" value="LOCAL" />
       <updated>1666710725624</updated>
     </task>
-    <task id="LOCAL-00006" summary="pt 2 step 4">
-      <created>1666719000747</created>
+    <task id="LOCAL-00006" summary="Part 2, number 1&#10;Encrypt/Decrypt">
+      <created>1666712469466</created>
       <option name="number" value="00006" />
       <option name="presentableId" value="LOCAL-00006" />
       <option name="project" value="LOCAL" />
-      <updated>1666719000747</updated>
+      <updated>1666712469466</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Part 2, number 1 and 2 completed. Progress on 3 and 4">
+      <created>1666716986209</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1666716986209</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -118,7 +128,8 @@
     <MESSAGE value="Start of Part 2.&#10;Everything is updated and working." />
     <MESSAGE value="Created TestClackClient and TestClackServer Classes" />
     <MESSAGE value="Part 1 progress" />
-    <MESSAGE value="pt 2 step 4" />
-    <option name="LAST_COMMIT_MESSAGE" value="pt 2 step 4" />
+    <MESSAGE value="Part 2, number 1&#10;Encrypt/Decrypt" />
+    <MESSAGE value="Part 2, number 1 and 2 completed. Progress on 3 and 4" />
+    <option name="LAST_COMMIT_MESSAGE" value="Part 2, number 1 and 2 completed. Progress on 3 and 4" />
   </component>
 </project>
