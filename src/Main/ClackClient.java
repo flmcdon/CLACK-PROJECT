@@ -4,6 +4,7 @@ import Data.ClackData;
 import Data.FileClackData;
 import Data.MessageClackData;
 
+import java.io.File;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -13,7 +14,7 @@ import java.util.Scanner;
  * whether the connection is open or not. The ClackClient object will also have two ClackData
  * objects representing data sent to the server and data received from the server.
  *
- * @author Xinchao Song
+ *
  */
 public class ClackClient {
     private static final int DEFAULT_PORT = 7000;  // The default port number
@@ -41,6 +42,15 @@ public class ClackClient {
         this.closeConnection = false;
         this.dataToSendToServer = null;
         this.dataToReceiveFromServer = null;
+        if (port < 1024) {
+            throw new IllegalArgumentException("Port cannot be less than 1024");
+        }
+        if (userName == null) {
+            throw new IllegalArgumentException("Username cannot be null");
+        }
+        if (hostName == null) {
+            throw new IllegalArgumentException("Hostname cannot be null");
+        }
     }
 
     /**
@@ -53,6 +63,12 @@ public class ClackClient {
      */
     public ClackClient(String userName, String hostName) {
         this(userName, hostName, DEFAULT_PORT);
+        if (userName == null) {
+            throw new IllegalArgumentException("Username cannot be null");
+        }
+        if (hostName == null) {
+            throw new IllegalArgumentException("Hostname cannot be null");
+        }
     }
 
     /**
@@ -64,6 +80,9 @@ public class ClackClient {
      */
     public ClackClient(String userName) {
         this(userName, "localhost");
+        if (userName == null) {
+            throw new IllegalArgumentException("Username cannot be null");
+        }
     }
 
     /**
@@ -80,7 +99,7 @@ public class ClackClient {
      * For now, it should have no code, just a declaration.
      */
     public void start() {
-        Scanner inFromStd = new Scanner(System.in);
+
 
     }
 
@@ -93,6 +112,7 @@ public class ClackClient {
      * or nothing.
      */
     public void readClientData() {
+        Scanner inFromStd = new Scanner(System.in);
         while (inFromStd.hasNext()){
             String userInput = inFromStd.next();
             if (userInput == "Done"){
@@ -102,7 +122,7 @@ public class ClackClient {
             }else if (userInput == "LISTUSERS"){
 
             }else{
-                super
+
             }
         }
     }
