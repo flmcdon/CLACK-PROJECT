@@ -13,7 +13,6 @@ import java.util.Scanner;
  * whether the connection is open or not. The ClackClient object will also have two ClackData
  * objects representing data sent to the server and data received from the server.
  *
- * @author Xinchao Song
  */
 public class ClackClient {
     private static final int DEFAULT_PORT = 7000;  // The default port number
@@ -24,6 +23,8 @@ public class ClackClient {
     private boolean closeConnection; // A boolean representing whether the connection is closed or not
     private ClackData dataToSendToServer; // A ClackData object representing the data sent to the server
     private ClackData dataToReceiveFromServer; // A ClackData object representing the data received from the server
+
+    private Scanner inFromStd = new Scanner(System.in);
 
     /**
      * The constructor to set up the username, host name, and port.
@@ -76,11 +77,13 @@ public class ClackClient {
 
     /**
      * Starts the client.
-     * Does not return anything.
-     * For now, it should have no code, just a declaration.
+     *
      */
     public void start() {
-        Scanner inFromStd = new Scanner(System.in);
+        inFromStd = new Scanner(System.in);
+        while( inFromStd.hasNext()){
+            String nextString = scan.nex
+        }
 
     }
 
@@ -97,12 +100,12 @@ public class ClackClient {
             String userInput = inFromStd.next();
             if (userInput == "Done"){
                 closeConnection = true;
-            }else if(userInput == ("SENDFILE" + fileName)){                //not sure how to implement file name
-                FileClackData(dataToSendToServer,fileName);
+            }else if(userInput == ("SENDFILE" + userInput)){                //not sure how to implement file name
+                FileClackData(dataToSendToServer,filename);
             }else if (userInput == "LISTUSERS"){
-
+            //blank for now
             }else{
-                super
+
             }
         }
     }
@@ -125,9 +128,10 @@ public class ClackClient {
 
     /**
      * Prints the received data to the standard output.
-     * For now, it should have no code, just a declaration.
+     *
      */
     public void printData() {
+        System.out.println("Here is what you wanted printed: " + dataToReceiveFromServer);      //ask about this
     }
 
     /**
@@ -147,7 +151,6 @@ public class ClackClient {
     public String getHostName() {
         return this.hostName;
     }
-
     /**
      * Returns the port.
      *
