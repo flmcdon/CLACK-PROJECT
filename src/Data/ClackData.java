@@ -122,15 +122,33 @@ public abstract class ClackData {
      *
      *
      */
-    protected String encrypt (String inputStringToEncrypt, String key){
+    protected String encrypt (String inputStringToEncrypt, String key) {
         Scanner scan = new Scanner(System.in);
         while (scan.hasNext()) {
             inputStringToEncrypt = scan.next();
             System.out.println("Input string to encyrpt:" + inputStringToEncrypt);
         }
         scan.close();
-        key = "clarkson";
 
+        char msg[] = inputStringToEncrypt.toCharArray();
+        int msgLen = msg.length;
+
+        char keyword[] = new char[msgLen];
+        char encryptMsg[] = new char[msgLen];
+
+        for (int i = 0, j = 0; i < msgLen; ++i, ++j) {
+            if (j == key.length()) {
+                j = 0;
+            }
+            keyword[i] = key.charAt(j);
+        }
+
+        for(int i = 0; i < msgLen; ++i){
+            encryptMsg[i] = (char) (((msg[i] + keyword[i])%26)+'A');
+        }
+
+        String encrypt = new String (encryptMsg);
+        return encrypt;
     }
 
     /**
@@ -139,7 +157,17 @@ public abstract class ClackData {
      */
 
     protected String decrypt (String inputStringToDecrypt, String key){
+        char msg[] = inputStringToDecrypt.toCharArray();
+        int msgLen = msg.length;
 
+        char keyword[] = new char[msgLen];
+        char decryptMsg[] = new char [msgLen];
+
+        for(int i = 0; i < msgLen; ++i){
+            decryptMsg[i] = (char) ((((msg[i] - keyword[i])+26)%26)+'A');
+        }
+        String decrypt = new String(decryptMsg);
+        return decrypt;
     }
 
 }
