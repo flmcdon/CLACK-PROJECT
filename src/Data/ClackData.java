@@ -2,6 +2,7 @@ package Data;
 
 //import date function
 import java.util.Date;
+import java.util.Scanner;
 
 /**
  * Class ClackData is a superclass that represents the data sent between the client and the
@@ -116,6 +117,30 @@ public abstract class ClackData {
      */
     public abstract String getData();
 
+    /**
+     * The protected method to take a string and encrypt it. It outputs the encrypted string
+     *
+     *
+     */
+    protected String encrypt (String inputStringToEncrypt, String key){
+        Scanner scan = new Scanner(System.in);
+        while (scan.hasNext()) {
+            inputStringToEncrypt = scan.next();
+            System.out.println("Input string to encyrpt:" + inputStringToEncrypt);
+        }
+        scan.close();
+        key = "clarkson";
+
+    }
+
+    /**
+     * The protected method the take an input string and decrypt using a key
+     *
+     */
+
+    protected String decrypt (String inputStringToDecrypt, String key){
+
+    }
 
 }
 
