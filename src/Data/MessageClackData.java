@@ -41,6 +41,19 @@ public class MessageClackData extends ClackData {
      *
      * @return this.message
      */
+
+    /**
+     *
+     * @param userName
+     * @param message
+     * @param key
+     * @param type
+     */
+    public MessageClackData (String userName, String message, String key, int type) {
+        super(userName,type);
+        this.message = message;
+        encrypt(message, key);
+    }
     public String getData() {
         return this.message;
     }
