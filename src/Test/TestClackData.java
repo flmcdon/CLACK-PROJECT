@@ -19,6 +19,9 @@ public class TestClackData {
         //messageClackData1.encrypt("Hello World", "clack");
 
         //decrypt
+        MessageClackData messageClackData4 = new MessageClackData("testUser3","Hello World", "clack", ClackData.CONSTANT_SENDFILE);
+        System.out.println(messageClackData4.getData("clack"));
+
 
 
         // getType()
