@@ -36,12 +36,6 @@ public class MessageClackData extends ClackData {
         this.message = "";
     }
 
-    /**
-     * Overridden get Data method with String key
-     */
-    public String getData(String key){
-        return decrypt(message,key);
-    }
 
     /**
      * Returns the instant message.
@@ -60,6 +54,12 @@ public class MessageClackData extends ClackData {
         super(userName,type);
         this.message = encrypt(message, key);
 
+    }
+    /**
+     * Overridden get Data method with String key
+     */
+    public String getData(String key){
+        return decrypt(message,key);
     }
     public String getData() {
         return this.message;

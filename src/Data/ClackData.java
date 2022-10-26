@@ -116,7 +116,7 @@ public abstract class ClackData {
      * @return data
      */
 
-    protected String encrypt(String inputStringToEncrypt, String key) {
+    public String encrypt(String inputStringToEncrypt, String key) {
         Scanner scan = new Scanner(System.in);
         while (scan.hasNext()) {
             inputStringToEncrypt = scan.next();
