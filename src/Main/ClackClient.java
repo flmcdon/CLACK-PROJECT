@@ -99,7 +99,8 @@ public class ClackClient {
      * For now, it should have no code, just a declaration.
      */
     public void start() {
-        //readClientData();
+        Scanner inFromStd = new Scanner(System.in);
+        readClientData();
         dataToSendToServer = dataToReceiveFromServer;
         printData();
     }
@@ -112,11 +113,11 @@ public class ClackClient {
      * sends a message,
      * or nothing.
      */
-     public void readClientData() {
-        Scanner inFromStd = new Scanner(System.in);
+    public void readClientData() {
+
         while (inFromStd.hasNext()){
             String userInput = inFromStd.next();
-            if (userInput == "Done"){
+            if (userInput == "DONE"){
                 closeConnection = true;
             }else if(userInput == ("SENDFILE" + fileName)){                //not sure how to implement file name
                 FileClackData(dataToSendToServer,fileName);
@@ -126,9 +127,7 @@ public class ClackClient {
 
             }
         }
-        }
-
-
+    }
 
     /**
      * Sends data to server.

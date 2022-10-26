@@ -141,8 +141,8 @@ public abstract class ClackData {
             encryptMsg[i] = (char) (((msg[i] + keyword[i]) % 26) + 'A');
         }
 
-        String encrypt = new String(encryptMsg);
-        return encrypt;
+        String encryptString = new String(encryptMsg);
+        return encryptString;
     }
 
     /**
@@ -159,8 +159,8 @@ public abstract class ClackData {
         for (int i = 0; i < msgLen; ++i) {
             decryptMsg[i] = (char) ((((msg[i] - keyword[i]) + 26) % 26) + 'A');
         }
-        String decrypt = new String(decryptMsg);
-        return decrypt;
+        String decryptString = new String(decryptMsg);
+        return decryptString;
     }
 
 
