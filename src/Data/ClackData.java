@@ -137,8 +137,9 @@ public abstract class ClackData {
             if (Character.isLowerCase(msg[i])) {
                 encryptMsg[i] = (char) (((msg[i] - 'a' + Character.toLowerCase(keyword[keyCounter]) - 'a') % 26) + 'A');
                 keyCounter = (keyCounter + 1) % 26;
-            } else if (Character.isUpperCase()) {
-
+            } else if (Character.isUpperCase(msg[i])) {
+                encryptMsg[i] = (char) (((msg[i] - 'A' + Character.toUpperCase(keyword[keyCounter]) - 'A') % 26) + 'A');
+                keyCounter = (keyCounter + 1) % 26;
             }else {
                 encryptMsg[i] = (char) (msg[i]);
             }
@@ -162,7 +163,13 @@ public abstract class ClackData {
         char decryptMsg[] = new char[msgLen];
 
         for (int i = 0; i < msgLen; ++i) {
-            decryptMsg[i] = (char) ((((msg[i] - keyword[i]) + 26) % 26) + 'A');
+            //decryptMsg[i] = (char) ((((msg[i] - keyword[i]) + 26) % 26) + 'A');
+            if (Character.isLowerCase(msg[i])) {
+                decryptMsg[i] = (char) ((((msg[i] - Character.toLowerCase(keyword[i])) + 26) % 26) + 'A');
+                //keyCounter = (keyCounter + 1) % 26;
+            }else if (Character.isUpperCase(msg[i])) {
+                decryptMsg[i] = (char) ((((msg[i] - Character.toUpperCase(keyword[i])) + 26) % 26) + 'A');
+            }
         }
         String decryptString = new String(decryptMsg);
         return decryptString;
