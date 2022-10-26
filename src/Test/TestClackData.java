@@ -16,6 +16,27 @@ public class TestClackData {
         FileClackData fileClackData2 =
                 new FileClackData("testUser2", "filename0", ClackData.CONSTANT_SENDFILE);
 
+        // encrypt
+        //System.out.println("encrypt with input string 'Hello World' and key 'Clack' : " + ClackData.encrypt("Hello World","clack"));
+
+        //decrypt
+
+        //MessageClackData() from part 2
+       // MessageClackData messageClackData3 = new MessageClackData("testUser3","Hello World", "clack", ClackData.CONSTANT_SENDFILE);
+
+        //getData() from part 2 from MessageClackData
+
+
+        //getData() from part 2 from FileClackData
+
+        //ReadFileContents
+
+        //ReadFileContents(key)
+
+        //writeFileContents
+
+        //writeFileContents(key)
+
         // getType()
         System.out.println("messageClackData1 getType(): " + messageClackData1.getType());
         System.out.println("messageClackData2 getType(): " + messageClackData2.getType());
