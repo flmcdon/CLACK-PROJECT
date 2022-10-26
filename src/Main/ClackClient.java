@@ -121,8 +121,8 @@ public class ClackClient {
             dataToSendToServer = new FileClackData(userName, fileName,ClackData.CONSTANT_SENDFILE);
             try {
                 ((FileClackData) dataToSendToServer).readFileContents();
-            }catch (IOException ioe){
-                throw new RuntimeException(ioe);
+            }catch (IOException ioe) {
+                System.err.println("IO Exception");
             }
 
         } else if (userInput.equals("LISTUSERS")) {
@@ -156,7 +156,6 @@ public class ClackClient {
      * For now, it should have no code, just a declaration.
      */
     public void printData() {
-        System.out.println(dataToReceiveFromServer);
     }
 
     /**
