@@ -78,9 +78,9 @@ public class FileClackData extends ClackData {
     /**
      * Reads the file contents.
      * Does not return anything.
-     * For now, it should have no code, just a declaration.
+     *
      */
-    public void readFileContents() {
+    public void readFileContents()  throws  IOException {
         try{
             File file = new File (fileName);
             BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
@@ -99,7 +99,7 @@ public class FileClackData extends ClackData {
      * Reads file and encrypts the file contents
      * @param key
      */
-    public void readFileContents(String key){
+    public void readFileContents(String key) {
         try{
             File file = new File (fileName);
             BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
@@ -117,16 +117,11 @@ public class FileClackData extends ClackData {
 
     /**
      * Writes the file contents.
+     * Does not return anything.
      *
      */
     public void writeFileContents(){
-        try{
-            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(fileName));
-            bufferedWriter.write(fileContents);
-            bufferedWriter.close();
-        }catch (IOException ioe) {
-            System.out.println("IO Exception");
-        }
+        writeFileContents_helper(fileContents);
     }
 
     /**
@@ -134,9 +129,14 @@ public class FileClackData extends ClackData {
      * @param key
      */
     public void writeFileContents (String key) {
+        String strToWrite = decrypt(fileContents, key);
+        writeFileContents_helper(strToWrite);
+    }
+
+    private void writeFileContents_helper (String strToWrite) {
         try{
             BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(fileName));
-            bufferedWriter.write(decrypt(fileContents, key));
+            bufferedWriter.write(strToWrite);
             bufferedWriter.close();
         }catch (IOException ioe) {
             System.out.println("IO Exception");

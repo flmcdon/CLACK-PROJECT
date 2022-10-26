@@ -117,12 +117,6 @@ public abstract class ClackData {
      */
 
     public String encrypt(String inputStringToEncrypt, String key) {
-        Scanner scan = new Scanner(System.in);
-        while (scan.hasNext()) {
-            inputStringToEncrypt = scan.next();
-            System.out.println("Input string to encyrpt:" + inputStringToEncrypt);
-        }
-        scan.close();
 
         char msg[] = inputStringToEncrypt.toCharArray();
         int msgLen = msg.length;
@@ -130,15 +124,26 @@ public abstract class ClackData {
         char keyword[] = new char[msgLen];
         char encryptMsg[] = new char[msgLen];
 
-        for (int i = 0, j = 0; i < msgLen; ++i, ++j) {
-            if (j == key.length()) {
-                j = 0;
-            }
-            keyword[i] = key.charAt(j);
-        }
-
+//        for (int i = 0, j = 0; i < msgLen; ++i, ++j) {
+//            if (j == key.length()) {
+//                j = 0;
+//            }
+//            keyword[i] = key.charAt(j);
+//        }
+        int keyCounter = 0;
         for (int i = 0; i < msgLen; ++i) {
-            encryptMsg[i] = (char) (((msg[i] + keyword[i]) % 26) + 'A');
+//            encryptMsg[i] = (char) (((msg[i] - 'a' + keyword[i] - 'a') % 26) + 'A');
+
+            if (Character.isLowerCase(msg[i])) {
+                encryptMsg[i] = (char) (((msg[i] - 'a' + Character.toLowerCase(keyword[keyCounter]) - 'a') % 26) + 'A');
+                keyCounter = (keyCounter + 1) % 26;
+            } else if (Character.isUpperCase()) {
+
+            }else {
+                encryptMsg[i] = (char) (msg[i]);
+            }
+
+
         }
 
         String encryptString = new String(encryptMsg);

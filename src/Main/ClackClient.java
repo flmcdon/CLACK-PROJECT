@@ -13,8 +13,6 @@ import java.util.Scanner;
  * host name of the server connected to, port number connected to, and a boolean designating
  * whether the connection is open or not. The ClackClient object will also have two ClackData
  * objects representing data sent to the server and data received from the server.
- *
- *
  */
 public class ClackClient {
     private static final int DEFAULT_PORT = 7000;  // The default port number
@@ -26,6 +24,8 @@ public class ClackClient {
     private ClackData dataToSendToServer; // A ClackData object representing the data sent to the server
     private ClackData dataToReceiveFromServer; // A ClackData object representing the data received from the server
 
+    private Scanner inFromStd;
+
     /**
      * The constructor to set up the username, host name, and port.
      * The connection should be set to be open (closeConnection = false).
@@ -35,13 +35,7 @@ public class ClackClient {
      * @param hostName a string representing the host name of the server
      * @param port     an int representing the port number on the server connected to
      */
-    public ClackClient(String userName, String hostName, int port) {
-        this.userName = userName;
-        this.hostName = hostName;
-        this.port = port;
-        this.closeConnection = false;
-        this.dataToSendToServer = null;
-        this.dataToReceiveFromServer = null;
+    public ClackClient(String userName, String hostName, int port) throws IllegalArgumentException {
         if (port < 1024) {
             throw new IllegalArgumentException("Port cannot be less than 1024");
         }
@@ -51,6 +45,13 @@ public class ClackClient {
         if (hostName == null) {
             throw new IllegalArgumentException("Hostname cannot be null");
         }
+
+        this.userName = userName;
+        this.hostName = hostName;
+        this.port = port;
+        this.closeConnection = false;
+        this.dataToSendToServer = null;
+        this.dataToReceiveFromServer = null;
     }
 
     /**
@@ -63,12 +64,6 @@ public class ClackClient {
      */
     public ClackClient(String userName, String hostName) {
         this(userName, hostName, DEFAULT_PORT);
-        if (userName == null) {
-            throw new IllegalArgumentException("Username cannot be null");
-        }
-        if (hostName == null) {
-            throw new IllegalArgumentException("Hostname cannot be null");
-        }
     }
 
     /**
@@ -80,9 +75,6 @@ public class ClackClient {
      */
     public ClackClient(String userName) {
         this(userName, "localhost");
-        if (userName == null) {
-            throw new IllegalArgumentException("Username cannot be null");
-        }
     }
 
     /**
@@ -99,10 +91,14 @@ public class ClackClient {
      * For now, it should have no code, just a declaration.
      */
     public void start() {
-        Scanner inFromStd = new Scanner(System.in);
-        readClientData();
-        dataToSendToServer = dataToReceiveFromServer;
-        printData();
+        inFromStd = new Scanner(System.in);
+        while (!closeConnection) {
+            readClientData();
+            dataToSendToServer = dataToReceiveFromServer;
+            printData();
+        }
+
+        inFromStd.close();
     }
 
     /**
@@ -114,19 +110,26 @@ public class ClackClient {
      * or nothing.
      */
     public void readClientData() {
-        while (inFromStd.hasNext()){
-            String userInput = inFromStd.next();
-            if (userInput == "DONE"){
-                closeConnection = true;
-            }else if(userInput == ("SENDFILE" + fileName)){                //not sure how to implement file name
-                FileClackData(dataToSendToServer,fileName);
-            }else if (userInput == "LISTUSERS"){
+        String userInput = inFromStd.next();
 
-            }else{
+        if (userInput.equals("DONE")) {
+            closeConnection = true;
+        } else if (userInput.equals("SENDFILE")) {                //not sure how to implement file name
+            String fileName = inFromStd.next();
 
-            }
+            dataToSendToServer = new FileClackData(userName, fileName,ClackData.CONSTANT_SENDFILE);
+            //try catch
+            ((FileClackData)dataToSendToServer).readFileContents();
+
+        } else if (userInput.equals("LISTUSERS")) {
+
+        } else {
+            String message = userInput + inFromStd.nextLine();
+            dataToSendToServer = new MessageClackData();
         }
+
     }
+
 
     /**
      * Sends data to server.
