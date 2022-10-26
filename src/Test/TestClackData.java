@@ -4,6 +4,8 @@ import Data.FileClackData;
 import Data.MessageClackData;
 import Data.ClackData;
 
+import java.io.IOException;
+
 public class TestClackData {
     public static void main(String[] args) {
         // MessageClackData (all three constructors)
@@ -62,8 +64,8 @@ public class TestClackData {
         System.out.println("fileClackData2 getData(key): " + fileClackData2.getData("clack"));
 
         //readFileContents
-        fileClackData1.readFileContents();          //Ask TA
-        fileClackData2.readFileContents();          //Ask TA
+        fileClackData1.readFileContents();
+        fileClackData2.readFileContents();
 
         //readFileContents(String Key)
         fileClackData1.readFileContents("clack");          //Ask TA

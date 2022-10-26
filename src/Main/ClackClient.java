@@ -5,6 +5,7 @@ import Data.FileClackData;
 import Data.MessageClackData;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -118,8 +119,11 @@ public class ClackClient {
             String fileName = inFromStd.next();
 
             dataToSendToServer = new FileClackData(userName, fileName,ClackData.CONSTANT_SENDFILE);
-            //try catch
-            ((FileClackData)dataToSendToServer).readFileContents();
+            try {
+                ((FileClackData) dataToSendToServer).readFileContents();
+            }catch (IOException ioe){
+                throw new RuntimeException(ioe);
+            }
 
         } else if (userInput.equals("LISTUSERS")) {
 
@@ -152,6 +156,7 @@ public class ClackClient {
      * For now, it should have no code, just a declaration.
      */
     public void printData() {
+        System.out.println(dataToReceiveFromServer);
     }
 
     /**
