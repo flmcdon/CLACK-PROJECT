@@ -4,8 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a56a04fc-9b7e-4cad-a7f0-3e117f70d0d6" name="Changes" comment="step 6">
+    <list default="true" id="a56a04fc-9b7e-4cad-a7f0-3e117f70d0d6" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Data/ClackData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Data/ClackData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Data/FileClackData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Data/FileClackData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Data/MessageClackData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Data/MessageClackData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main/ClackClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main/ClackClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Test/TestClackClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Test/TestClackClient.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Test/TestClackData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Test/TestClackData.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -114,7 +119,14 @@
       <option name="project" value="LOCAL" />
       <updated>1666721250394</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Test Class Development">
+      <created>1666800508340</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1666800508340</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -136,6 +148,7 @@
     <MESSAGE value="Part 2, number 1&#10;Encrypt/Decrypt" />
     <MESSAGE value="Part 2, number 1 and 2 completed. Progress on 3 and 4" />
     <MESSAGE value="step 6" />
-    <option name="LAST_COMMIT_MESSAGE" value="step 6" />
+    <MESSAGE value="Test Class Development" />
+    <option name="LAST_COMMIT_MESSAGE" value="Test Class Development" />
   </component>
 </project>

@@ -63,6 +63,46 @@ public class TestClackClient {
         System.out.println("clackClient11 getPort(): " + clackClient11.getPort());
         System.out.println();
 
+        //readClientData()   ASK TA
+
+        clackClient1.readClientData();
+        clackClient2.readClientData();
+        clackClient3.readClientData();
+        clackClient4.readClientData();
+        clackClient5.readClientData();
+        clackClient6.readClientData();
+        clackClient7.readClientData();
+        clackClient8.readClientData();
+        clackClient9.readClientData();
+        clackClient10.readClientData();
+        clackClient11.readClientData();
+
+        //printData()
+        clackClient1.printData();
+        clackClient2.printData();
+        clackClient3.printData();
+        clackClient4.printData();
+        clackClient5.printData();
+        clackClient6.printData();
+        clackClient7.printData();
+        clackClient8.printData();
+        clackClient9.printData();
+        clackClient10.printData();
+        clackClient11.printData();
+
+        //start()
+        clackClient1.start();
+        clackClient2.start();
+        clackClient3.start();
+        clackClient4.start();
+        clackClient5.start();
+        clackClient6.start();
+        clackClient7.start();
+        clackClient8.start();
+        clackClient9.start();
+        clackClient10.start();
+        clackClient11.start();
+
         // hashCode()
         System.out.println("clackClient1 hashCode(): " + clackClient1.hashCode());
         System.out.println("clackClient2 hashCode(): " + clackClient2.hashCode());

@@ -99,7 +99,7 @@ public class ClackClient {
      * For now, it should have no code, just a declaration.
      */
     public void start() {
-        readClientData();
+        //readClientData();
         dataToSendToServer = dataToReceiveFromServer;
         printData();
     }
@@ -112,7 +112,7 @@ public class ClackClient {
      * sends a message,
      * or nothing.
      */
-    public void readClientData() {
+     public void readClientData() {
         Scanner inFromStd = new Scanner(System.in);
         while (inFromStd.hasNext()){
             String userInput = inFromStd.next();
@@ -126,7 +126,9 @@ public class ClackClient {
 
             }
         }
-    }
+        }
+
+
 
     /**
      * Sends data to server.
