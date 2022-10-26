@@ -114,7 +114,6 @@ public class ClackClient {
      * or nothing.
      */
     public void readClientData() {
-
         while (inFromStd.hasNext()){
             String userInput = inFromStd.next();
             if (userInput == "DONE"){
