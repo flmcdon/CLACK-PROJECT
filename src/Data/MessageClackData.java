@@ -58,8 +58,8 @@ public class MessageClackData extends ClackData {
      */
     public MessageClackData (String userName, String message, String key, int type) {
         super(userName,type);
-        this.message = message;
-        encrypt(message, key);
+        this.message = encrypt(message, key);
+
     }
     public String getData() {
         return this.message;
