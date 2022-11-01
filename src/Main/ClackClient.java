@@ -147,17 +147,17 @@ public class ClackClient {
     /**
      * Sends data to server.
      * Does not return anything.
-     * For now, it should have no code, just a declaration.
      */
     public void sendData() {
+        BufferedReader dataToSendToServer = new BufferedReader(new InputStreamReader(skt.getInputStream()));
     }
 
     /**
      * Receives data from the server.
      * Does not return anything.
-     * For now, it should have no code, just a declaration.
      */
     public void receiveData() {
+
     }
 
     /**
@@ -166,7 +166,7 @@ public class ClackClient {
      */
     public void printData() {
         System.out.println(dataToReceiveFromServer);
-    }
+    }5676
 
     /**
      * Returns the username.
