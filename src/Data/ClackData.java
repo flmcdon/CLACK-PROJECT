@@ -1,6 +1,7 @@
 package Data;
 
 //import date function
+import java.io.Serializable;
 import java.util.Date;
 import java.util.Scanner;
 
@@ -12,7 +13,7 @@ import java.util.Scanner;
  * should not be instantiable.
  *
  */
-public abstract class ClackData {
+public abstract class ClackData  implements Serializable {
 
     /**
      * For giving a listing of all users connected to this session.

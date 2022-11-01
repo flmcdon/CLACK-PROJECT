@@ -65,12 +65,12 @@ public class TestClackData {
 
         //readFileContents
         try {
-            fileClackData1.readFileContents();
+            fileClackData1.readFileContents();          //Ask TA
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
         try {
-            fileClackData2.readFileContents();
+            fileClackData2.readFileContents();          //Ask TA
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

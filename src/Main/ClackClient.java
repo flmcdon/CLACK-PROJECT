@@ -4,11 +4,8 @@ import Data.ClackData;
 import Data.FileClackData;
 import Data.MessageClackData;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.Socket;
+import java.io.*;
+import java.net.ServerSocket;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -20,6 +17,7 @@ import java.util.Scanner;
  */
 public class ClackClient {
     private static final int DEFAULT_PORT = 7000;  // The default port number
+
     private String userName;  // A string representing the name of the client
     private String hostName;  // A string representing the name of the computer representing the server
     private int port; // An integer representing the port number on the server connected to
@@ -27,7 +25,11 @@ public class ClackClient {
     private ClackData dataToSendToServer; // A ClackData object representing the data sent to the server
     private ClackData dataToReceiveFromServer; // A ClackData object representing the data received from the server
     private Scanner inFromStd;
-    
+
+    private ObjectInputStream inFromServer;
+
+    private ObjectOutputStream outToServer;
+
 
     /**
      * The constructor to set up the username, host name, and port.
@@ -96,9 +98,14 @@ public class ClackClient {
     public void start() {
         inFromStd = new Scanner(System.in);
         while (!closeConnection) {
-            readClientData();
-            dataToSendToServer = dataToReceiveFromServer;
-            printData();
+            try {
+                ServerSocket skt = new ServerSocket(port);
+                readClientData();
+                dataToSendToServer = dataToReceiveFromServer;
+                printData();
+            }catch (Exception e) {
+                System.err.println("Temp");
+            }
         }
 
         inFromStd.close();
@@ -112,7 +119,7 @@ public class ClackClient {
      * sends a message,
      * or nothing.
      */
-    public void readClientData() {
+    public void readClientData()  {
         String userInput = inFromStd.next();
 
         if (userInput.equals("DONE")) {

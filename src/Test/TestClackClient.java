@@ -19,7 +19,7 @@ public class TestClackClient {
         ClackClient clackClient8 = new ClackClient("testUser3");
         ClackClient clackClient9 = new ClackClient("Anon");
         ClackClient clackClient10 = new ClackClient();
-
+        //ClackClient clackClient11 = new ClackClient(null);
 
         // getUserName()
         System.out.println("clackClient1 getUserName(): " + clackClient1.getUserName());
@@ -32,7 +32,7 @@ public class TestClackClient {
         System.out.println("clackClient8 getUserName(): " + clackClient8.getUserName());
         System.out.println("clackClient9 getUserName(): " + clackClient9.getUserName());
         System.out.println("clackClient10 getUserName(): " + clackClient10.getUserName());
-       // System.out.println("clackClient11 getUserName(): " + clackClient11.getUserName());
+        //System.out.println("clackClient11 getUserName(): " + clackClient11.getUserName());
         System.out.println();
 
         // getHostName()
@@ -46,7 +46,7 @@ public class TestClackClient {
         System.out.println("clackClient8 getHostName(): " + clackClient8.getHostName());
         System.out.println("clackClient9 getHostName(): " + clackClient9.getHostName());
         System.out.println("clackClient10 getHostName(): " + clackClient10.getHostName());
-       // System.out.println("clackClient11 getHostName(): " + clackClient11.getHostName());
+        //System.out.println("clackClient11 getHostName(): " + clackClient11.getHostName());
         System.out.println();
 
         // getPort()
