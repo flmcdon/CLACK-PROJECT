@@ -110,7 +110,7 @@ public class ClackClient {
      * sends a message,
      * or nothing.
      */
-    public void readClientData() {
+    public void readClientData()  {
         String userInput = inFromStd.next();
 
         if (userInput.equals("DONE")) {
@@ -156,6 +156,7 @@ public class ClackClient {
      * For now, it should have no code, just a declaration.
      */
     public void printData() {
+        System.out.println(dataToReceiveFromServer);
     }
 
     /**
