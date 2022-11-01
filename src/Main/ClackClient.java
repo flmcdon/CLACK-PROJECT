@@ -100,6 +100,7 @@ public class ClackClient {
         while (!closeConnection) {
             try {
                 ServerSocket skt = new ServerSocket(port);
+                inFromServer = new ObjectInputStream();
                 readClientData();
                 dataToSendToServer = dataToReceiveFromServer;
                 printData();
