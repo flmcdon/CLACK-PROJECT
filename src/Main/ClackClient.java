@@ -4,8 +4,8 @@ import Data.ClackData;
 import Data.FileClackData;
 import Data.MessageClackData;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
+import java.net.ServerSocket;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -24,8 +24,12 @@ public class ClackClient {
     private boolean closeConnection; // A boolean representing whether the connection is closed or not
     private ClackData dataToSendToServer; // A ClackData object representing the data sent to the server
     private ClackData dataToReceiveFromServer; // A ClackData object representing the data received from the server
-
     private Scanner inFromStd;
+
+    private ObjectInputStream inFromServer;
+
+    private ObjectOutputStream outToServer;
+
 
     /**
      * The constructor to set up the username, host name, and port.
@@ -94,9 +98,14 @@ public class ClackClient {
     public void start() {
         inFromStd = new Scanner(System.in);
         while (!closeConnection) {
-            readClientData();
-            dataToSendToServer = dataToReceiveFromServer;
-            printData();
+            try {
+                ServerSocket skt = new ServerSocket(port);
+                readClientData();
+                dataToSendToServer = dataToReceiveFromServer;
+                printData();
+            }catch (Exception e) {
+                System.err.println("Temp");
+            }
         }
 
         inFromStd.close();
