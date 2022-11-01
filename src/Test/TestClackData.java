@@ -64,8 +64,16 @@ public class TestClackData {
         System.out.println("fileClackData2 getData(key): " + fileClackData2.getData("clack"));
 
         //readFileContents
-        fileClackData1.readFileContents();
-        fileClackData2.readFileContents();
+        try {
+            fileClackData1.readFileContents();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        try {
+            fileClackData2.readFileContents();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
 
         //readFileContents(String Key)
         fileClackData1.readFileContents("clack");          //Ask TA

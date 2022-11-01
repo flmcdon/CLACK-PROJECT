@@ -4,8 +4,11 @@ import Data.ClackData;
 import Data.FileClackData;
 import Data.MessageClackData;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.Socket;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -17,15 +20,14 @@ import java.util.Scanner;
  */
 public class ClackClient {
     private static final int DEFAULT_PORT = 7000;  // The default port number
-
     private String userName;  // A string representing the name of the client
     private String hostName;  // A string representing the name of the computer representing the server
     private int port; // An integer representing the port number on the server connected to
     private boolean closeConnection; // A boolean representing whether the connection is closed or not
     private ClackData dataToSendToServer; // A ClackData object representing the data sent to the server
     private ClackData dataToReceiveFromServer; // A ClackData object representing the data received from the server
-
     private Scanner inFromStd;
+    
 
     /**
      * The constructor to set up the username, host name, and port.
@@ -156,6 +158,7 @@ public class ClackClient {
      * For now, it should have no code, just a declaration.
      */
     public void printData() {
+        System.out.println(dataToReceiveFromServer);
     }
 
     /**
