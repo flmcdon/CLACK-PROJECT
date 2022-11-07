@@ -98,20 +98,21 @@ public class ClackClient {
      * For now, it should have no code, just a declaration.
      */
     public void start() {
-        inFromStd = new Scanner(System.in);
-        while (!this.closeConnection) {
-            try {
-                Socket skt = new Socket(hostName, port);
-                inFromServer = new ObjectInputStream();
-                readClientData();
-                this.dataToSendToServer = this.dataToReceiveFromServer;
-                printData();
-            }catch (Exception e) {
-                System.err.println("Temp");
+        try {
+            Socket skt = new Socket(hostName, port);
+            inFromServer = new ObjectInputStream(skt.getInputStream());
+            outToServer = new ObjectOutputStream(skt.getOutputStream());
+                        while (!closeConnection) {
+                inFromStd = new Scanner(System.in);
+                this.readClientData();
+                this.sendData();
             }
+            inFromStd.close();
+            skt.close();
+        } catch (IOException ioe) {
+            System.err.println("io exception");
         }
 
-        this.inFromStd.close();
     }
 
     /**
@@ -158,7 +159,11 @@ public class ClackClient {
      * Does not return anything.
      */
     public void sendData() {
-        BufferedReader dataToSendToServer = new BufferedReader(new InputStreamReader(skt.getInputStream()));
+        try {
+            outToServer.writeObject(dataToSendToServer);
+        } catch (IOException ioe) {
+            System.err.println("io exception");
+        }
     }
 
     /**
@@ -166,7 +171,13 @@ public class ClackClient {
      * Does not return anything.
      */
     public void receiveData() {
-
+        try {
+            dataToReceiveFromServer = (ClackData) inFromServer.readObject();
+        } catch (IOException ioe) {
+            System.err.println("io exception");
+        } catch (ClassNotFoundException cnfe) {
+            System.err.println("class not found exception");
+        }
     }
 
     /**
@@ -261,5 +272,39 @@ public class ClackClient {
                 + "Connection status: " + (this.closeConnection ? "Closed" : "Open") + "\n"
                 + "Data to send to the server: " + this.dataToSendToServer + "\n"
                 + "Data to receive from the server: " + this.dataToReceiveFromServer + "\n";
+    }
+
+    public static void main(String args[]) {
+        try {
+            ClackClient client;
+            if (args.length > 0) {
+                final String input = args[0];
+                if (input.contains("@")) {
+                    if (input.contains(":")) {
+                        // Input contains username, hostname and port
+                        final String username = input.split("@")[0];
+                        final String hostname = input.split("@")[1].split(":")[0];
+                        final int port = Integer.parseInt(input.split(":")[1]);
+                        client = new ClackClient(username, hostname, port);
+                    } else {
+                        // Input contains username and hostname
+                        final String username = input.split("@")[0];
+                        final String hostname = input.split("@")[1];
+                        client = new ClackClient(username, hostname);
+                    }
+                } else {
+                    // Input contains username
+                    client = new ClackClient(input);
+                }
+            } else {
+                // No arguments, run as default constructor
+                client = new ClackClient();
+            }
+            client.start();
+        } catch (ArrayIndexOutOfBoundsException aioobe) {
+            System.err.println("array out of bounds exception");
+        } catch (NumberFormatException nfe) {
+            System.err.println("number format exception (port needs to be a number)");
+        }
     }
 }
