@@ -45,7 +45,7 @@ public class FileClackData extends ClackData {
      *
      * @param fileName a string representing the name of a file
      */
-    public void setFileName(String fileName){
+    public void setFileName(String fileName) {
         this.fileName = fileName;
     }
 
@@ -54,7 +54,7 @@ public class FileClackData extends ClackData {
      *
      * @return this.fileName
      */
-    public String getFileName(){
+    public String getFileName() {
         return this.fileName;
     }
 
@@ -63,6 +63,7 @@ public class FileClackData extends ClackData {
      *
      * @return this.fileContent
      */
+    @Override
     public String getData() {
         return this.fileContents;
     }
@@ -70,78 +71,54 @@ public class FileClackData extends ClackData {
     /**
      * Overridden get Data method with String key
      */
-    public String getData(String key){
-        return decrypt(fileContents , key);
+    @Override
+    public String getData(String key) {
+        return decrypt(fileContents, key);
 
     }
 
     /**
      * Reads the file contents.
      * Does not return anything.
-     *
      */
-    public void readFileContents()  throws  IOException {
-        try{
-            File file = new File (fileName);
-            BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
-            String nextLine;
-            while ((nextLine = bufferedReader.readLine()) != null){
-                fileContents += nextLine;
-            }
-        }catch (FileNotFoundException fnfe) {
-            System.err.println("File does not exist");
-        }catch (IOException ioe) {
-            System.err.println("IOException Occured");
-        }
+    public void readFileContents() throws IOException {
+        this.fileContents = readFileContentsHelper();
     }
 
     /**
      * Reads file and encrypts the file contents
+     *
      * @param key
      */
-    public void readFileContents(String key) {
-        try{
-            File file = new File (fileName);
-            BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
-            String nextLine;
-            while ((nextLine = bufferedReader.readLine()) != null){
-                fileContents += nextLine;
-            }
-            encrypt(fileContents,key);
-        }catch (FileNotFoundException fnfe) {
-            System.err.println("File does not exist");
-        }catch (IOException ioe) {
-            System.err.println("IOException Occured");
-        }
+    public void readFileContents(String key) throws IOException {
+        this.fileContents = encrypt(readFileContentsHelper(), key);
     }
 
     /**
      * Writes the file contents.
      * Does not return anything.
-     *
      */
-    public void writeFileContents(){
-        writeFileContents_helper(fileContents);
+    public void writeFileContents() {
+        writeFileContents_helper(this.fileContents);
     }
 
     /**
-     *
      * @param key
      */
-    public void writeFileContents (String key) {
-        String strToWrite = decrypt(fileContents, key);
-        writeFileContents_helper(strToWrite);
+    public void writeFileContents(String key) {
+        writeFileContents_helper(decrypt(this.fileContents, key));
     }
 
-    private void writeFileContents_helper (String strToWrite) {
-        try{
+    private void writeFileContents_helper(String strToWrite) {
+        try {
             BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(fileName));
             bufferedWriter.write(strToWrite);
             bufferedWriter.close();
-        }catch (IOException ioe) {
+        } catch (IOException ioe) {
             System.out.println("IO Exception");
         }
     }
+
     @Override
     public String toString() {
         // Should return a full description of the class with all instance variables,
@@ -183,5 +160,26 @@ public class FileClackData extends ClackData {
                 && this.type == otherFileClackData.type
                 && Objects.equals(this.fileName, otherFileClackData.fileName)
                 && Objects.equals(this.fileContents, otherFileClackData.fileContents);
+    }
+
+
+    private String readFileContentsHelper() throws IOException {
+        StringBuilder fileContentsReadBuilder = new StringBuilder();
+
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(this.fileName));
+            String line;
+
+            while ((line = br.readLine()) != null) {
+                fileContentsReadBuilder.append(line).append("\n");
+            }
+
+            br.close();
+
+        } catch (FileNotFoundException fnfe) {
+            System.err.println("FileNotFoundException occurs when reading a file: " + fnfe.getMessage());
+        }
+
+        return fileContentsReadBuilder.toString();
     }
 }
