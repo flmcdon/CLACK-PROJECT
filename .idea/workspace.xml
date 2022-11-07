@@ -5,9 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a56a04fc-9b7e-4cad-a7f0-3e117f70d0d6" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/artifacts/ClackClient_Jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/artifacts/ClackServer_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cs242-fa22-project-part2-solution/cs242-fa22-project-part2-solution.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Main/ClackClientMeta/META-INF/MANIFEST.MF" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main/ClackClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main/ClackClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main/ClackServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main/ClackServer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,13 +41,17 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/damoo/OneDrive/Documents/School/Fall 2022/CS 242/CLACK-PROJECT&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "last_opened_file_path": "C:/Users/damoo/OneDrive/Documents/School/Fall 2022/CS 242/CLACK-PROJECT",
+    "project.structure.last.edited": "Artifacts",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\floyd\Documents\School\Fall 2022\CS242\CS242-Clack\src\Test" />
@@ -171,14 +178,7 @@
       <option name="project" value="LOCAL" />
       <updated>1667835418747</updated>
     </task>
-    <task id="LOCAL-00017" summary="2 &amp; 3">
-      <created>1667841284448</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1667841284448</updated>
-    </task>
-    <option name="localTasksCounter" value="18" />
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -208,7 +208,6 @@
     <MESSAGE value="FileClackData Corrcections" />
     <MESSAGE value="Clack Client Corrections" />
     <MESSAGE value="Clack Client Corrections with Get Data" />
-    <MESSAGE value="2 &amp; 3" />
-    <option name="LAST_COMMIT_MESSAGE" value="2 &amp; 3" />
+    <option name="LAST_COMMIT_MESSAGE" value="Clack Client Corrections with Get Data" />
   </component>
 </project>
