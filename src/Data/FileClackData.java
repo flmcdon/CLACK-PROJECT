@@ -63,7 +63,7 @@ public class FileClackData extends ClackData {
      *
      * @return this.fileContent
      */
-    @Override
+
     public String getData() {
         return this.fileContents;
     }
@@ -71,7 +71,7 @@ public class FileClackData extends ClackData {
     /**
      * Overridden get Data method with String key
      */
-    @Override
+
     public String getData(String key) {
         return decrypt(fileContents, key);
 
