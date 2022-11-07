@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="a56a04fc-9b7e-4cad-a7f0-3e117f70d0d6" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Data/ClackData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Data/ClackData.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
