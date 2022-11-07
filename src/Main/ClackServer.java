@@ -142,5 +142,16 @@ public class ClackServer {
                 + "Data to send to the client: " + this.dataToSendToClient + "\n";
     }
 
-
+    public static void main(String args[]) {
+            ClackServer server;
+            //input length is > 0
+            if (args.length > 0) {
+                //first character
+                final String input = args[0];
+                server = new ClackServer(Integer.parseInt(input));
+            } else {
+                server = new ClackServer();
+            }
+            server.start();
+    }
 }
