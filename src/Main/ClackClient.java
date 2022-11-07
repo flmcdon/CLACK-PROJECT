@@ -277,9 +277,13 @@ public class ClackClient {
     public static void main(String args[]) {
         try {
             ClackClient client;
+            //if input is not length 0
             if (args.length > 0) {
+                //first character
                 final String input = args[0];
+                //contains "@
                 if (input.contains("@")) {
+                    //contains ":"
                     if (input.contains(":")) {
                         // Input contains username, hostname and port
                         final String username = input.split("@")[0];
