@@ -1,6 +1,7 @@
 package Main;
 
 import Data.ClackData;
+
 import java.util.Objects;
 
 /**
@@ -17,7 +18,7 @@ public class ClackServer {
     //Declaration of local variables
     private int port;
     public boolean closeConnection;
-    private static final int defaultPort = 7000;
+    private static final int DEFAULT_PORT = 7000;
 
     private ClackData dataToReceiveFromClient;
     private ClackData dataToSendToClient;
@@ -40,7 +41,7 @@ public class ClackServer {
      * This constructor should call another constructor.
      */
     public ClackServer(){
-        this (defaultPort);
+        this (DEFAULT_PORT);
     }
     /**
      * Starts the server.

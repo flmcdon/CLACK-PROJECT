@@ -8,6 +8,9 @@ import java.io.IOException;
 
 public class TestClackData {
     public static void main(String[] args) {
+        //The key got encryption and decryption
+        final String key = "clack";
+
         // MessageClackData (all three constructors)
         MessageClackData messageClackData1 = new MessageClackData();
         MessageClackData messageClackData2 = new MessageClackData("testUser1", "testMessage", ClackData.CONSTANT_SENDMESSAGE);
@@ -65,27 +68,81 @@ public class TestClackData {
 
         //readFileContents
         try {
-            fileClackData1.readFileContents();          //Ask TA
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        try {
-            fileClackData2.readFileContents();          //Ask TA
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+            System.out.println("fileClackData1 readFileContents():");
+            fileClackData1.setFileName("Part2_document.txt");
+            System.out.println("Reading from the file: " + fileClackData1.getFileName());
+            fileClackData1.readFileContents();
+            System.out.println("fileClackData1 getData(): " + fileClackData1.getData());
+            System.out.println();
+
+            System.out.println("fileClackData2 readFileContents():");
+            fileClackData2.setFileName("wrong_file");
+            System.out.println("Error should be printed out when reading from the file: "
+                    + fileClackData2.getFileName());
+            fileClackData2.readFileContents();
+            System.out.println();
+
+        } catch (Exception ioe) {
+            System.err.println("Exception should not be thrown.");
         }
 
         //readFileContents(String Key)
-        fileClackData1.readFileContents("clack");          //Ask TA
-        fileClackData2.readFileContents("clack");
+        try {
+            System.out.println("fileClackData1 readFileContents(key):");
+            System.out.println("Using the key: " + key);
+            fileClackData1.setFileName("Part2_document.txt");
+            System.out.println("Reading from the file: " + fileClackData1.getFileName());
+            fileClackData1.readFileContents(key);
+            System.out.println("fileClackData1 getData(): " + fileClackData1.getData());
+            System.out.println("fileClackData1 getData(key): " + fileClackData1.getData(key));
+            System.out.println();
+
+            System.out.println("fileClackData2 readFileContents(key):");
+            System.out.println("Using the key: " + key);
+            fileClackData2.setFileName("wrong_file");
+            System.out.println("Error should be printed out when reading from the file: "
+                    + fileClackData2.getFileName());
+            fileClackData2.readFileContents(key);
+            System.out.println();
+
+        } catch (Exception ioe) {
+            System.err.println("Exception should not be thrown.");
+        }
 
         //writeFileContents
+        System.out.println("fileClackData1 writeFileContents():");
+        fileClackData1.setFileName("test_file_write.txt");
+        System.out.println("Writing to the file: " + fileClackData1.getFileName());
         fileClackData1.writeFileContents();
+        System.out.println();
+
+        System.out.println("fileClackData2 writeFileContents():");
+        fileClackData2.setFileName("./wrong_path/wrong_file");
+        System.out.println("Error should be printed out when writing to the file: "
+                + fileClackData2.getFileName());
         fileClackData2.writeFileContents();
+        System.out.println();
 
         //writeFileContents(String key)
-        fileClackData1.writeFileContents("clack");
-        fileClackData2.writeFileContents("clack");
+        System.out.println("fileClackData1 writeFileContents() for encrypted file contents:");
+        fileClackData1.setFileName("test_file_write_encrypted.txt");
+        System.out.println("Writing to the file: " + fileClackData1.getFileName());
+        fileClackData1.writeFileContents();
+        System.out.println();
+
+        System.out.println("fileClackData1 writeFileContents(key) for encrypted file contents:");
+        System.out.println("Using the key: " + key);
+        fileClackData1.setFileName("test_file_write_decrypted.txt");
+        System.out.println("Writing to the file: " + fileClackData1.getFileName());
+        fileClackData1.writeFileContents(key);
+        System.out.println();
+
+        System.out.println("fileClackData2 writeFileContents(key):");
+        System.out.println("Using the key: " + key);
+        fileClackData2.setFileName("./wrong_path/wrong_file");
+        System.out.println("Error should be printed out when writing to the file: "
+                + fileClackData2.getFileName());
+        fileClackData2.writeFileContents(key);
 
         // hashCode()
         System.out.println("messageClackData1 hashCode(): " + messageClackData1.hashCode());
