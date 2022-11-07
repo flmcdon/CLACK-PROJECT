@@ -6,6 +6,7 @@ import Data.MessageClackData;
 
 import java.io.*;
 import java.net.*;
+import java.security.Key;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -18,6 +19,7 @@ import java.util.Scanner;
 public class ClackClient {
     private static final int DEFAULT_PORT = 7000;  // The default port number
 
+    private static final String DEFAULT_KEY = "TIME";
     private String userName;  // A string representing the name of the client
     private String hostName;  // A string representing the name of the computer representing the server
     private int port; // An integer representing the port number on the server connected to
@@ -67,7 +69,7 @@ public class ClackClient {
      * @param userName a string representing the username of the client
      * @param hostName a string representing the host name of the server
      */
-    public ClackClient(String userName, String hostName) {
+    public ClackClient(String userName, String hostName) throws  IllegalArgumentException {
         this(userName, hostName, DEFAULT_PORT);
     }
 
@@ -78,7 +80,7 @@ public class ClackClient {
      *
      * @param userName a string representing the username of the client
      */
-    public ClackClient(String userName) {
+    public ClackClient(String userName)throws IllegalArgumentException {
         this(userName, "localhost");
     }
 
@@ -86,7 +88,7 @@ public class ClackClient {
      * The default constructor that sets the anonymous user.
      * This constructor should call another constructor.
      */
-    public ClackClient() {
+    public ClackClient() throws IllegalArgumentException {
         this("Anon");
     }
 
@@ -97,19 +99,19 @@ public class ClackClient {
      */
     public void start() {
         inFromStd = new Scanner(System.in);
-        while (!closeConnection) {
+        while (!this.closeConnection) {
             try {
                 Socket skt = new Socket(hostName, port);
                 inFromServer = new ObjectInputStream();
                 readClientData();
-                dataToSendToServer = dataToReceiveFromServer;
+                this.dataToSendToServer = this.dataToReceiveFromServer;
                 printData();
             }catch (Exception e) {
                 System.err.println("Temp");
             }
         }
 
-        inFromStd.close();
+        this.inFromStd.close();
     }
 
     /**
@@ -120,45 +122,51 @@ public class ClackClient {
      * sends a message,
      * or nothing.
      */
-    public void readClientData()  {
-        String userInput = inFromStd.next();
+    public void readClientData() {
+        String nextToken = this.inFromStd.next();
 
-        if (userInput.equals("DONE")) {
-            closeConnection = true;
-        } else if (userInput.equals("SENDFILE")) {                //not sure how to implement file name
-            String fileName = inFromStd.next();
+        if (nextToken.equals("DONE")) {
+            this.closeConnection = true;
+            this.dataToSendToServer = new MessageClackData(this.userName, nextToken, DEFAULT_KEY,
+                    ClackData.CONSTANT_LOGOUT);
 
-            dataToSendToServer = new FileClackData(userName, fileName,ClackData.CONSTANT_SENDFILE);
+        } else if (nextToken.equals("SENDFILE")) {
+            String filename = this.inFromStd.next();
+            this.dataToSendToServer = new FileClackData(this.userName, filename, ClackData.CONSTANT_SENDFILE);
+
             try {
-                ((FileClackData) dataToSendToServer).readFileContents();
-            }catch (IOException ioe) {
-                System.err.println("IO Exception");
+                ((FileClackData) this.dataToSendToServer).readFileContents(DEFAULT_KEY);
+            } catch (IOException ioe) {
+                System.err.println("IOException occurs when reading a file: " + ioe.getMessage());
+                this.dataToSendToServer = null;
             }
 
-        } else if (userInput.equals("LISTUSERS")) {
+        } else if (nextToken.equals("LISTUSERS")) {
+            // Does nothing for now. Eventually, this will return a list of users.
+            // For Part 2, do not test LISTUSERS; otherwise, it may generate an error.
 
         } else {
-            String message = userInput + inFromStd.nextLine();
-            dataToSendToServer = new MessageClackData();
+            String message = nextToken + this.inFromStd.nextLine();
+            this.dataToSendToServer = new MessageClackData(this.userName, message, DEFAULT_KEY,
+                    ClackData.CONSTANT_SENDMESSAGE);
         }
-
     }
 
 
     /**
      * Sends data to server.
      * Does not return anything.
-     * For now, it should have no code, just a declaration.
      */
     public void sendData() {
+        BufferedReader dataToSendToServer = new BufferedReader(new InputStreamReader(skt.getInputStream()));
     }
 
     /**
      * Receives data from the server.
      * Does not return anything.
-     * For now, it should have no code, just a declaration.
      */
     public void receiveData() {
+
     }
 
     /**
@@ -166,7 +174,12 @@ public class ClackClient {
      * For now, it should have no code, just a declaration.
      */
     public void printData() {
-        System.out.println(dataToReceiveFromServer);
+        if (this.dataToReceiveFromServer != null) {
+            System.out.println("From: " + this.dataToReceiveFromServer.getUserName());
+            System.out.println("Date: " + this.dataToReceiveFromServer.getDate());
+            System.out.println("Data: " + this.dataToReceiveFromServer.getData(DEFAULT_KEY));
+            System.out.println();
+        }
     }
 
     /**
