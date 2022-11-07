@@ -20,6 +20,73 @@ public class TestClackClient {
         ClackClient clackClient9 = new ClackClient("Anon");
         ClackClient clackClient10 = new ClackClient();
         //ClackClient clackClient11 = new ClackClient(null);
+        // Tests IllegalArgumentException thrown as expected from the constructors of ClackClient
+        // when the username is null.
+        try {
+            new ClackClient(null, "hostName", 12345);
+        } catch (IllegalArgumentException e) {
+            System.out.println("IllegalArgumentException thrown as expected from " +
+                    "ClackClient(String userName, String hostName, int port) " +
+                    "when the username is null.");
+        }
+        try {
+            new ClackClient(null, "hostName");
+        } catch (IllegalArgumentException e) {
+            System.out.println("IllegalArgumentException thrown as expected from " +
+                    "ClackClient(String userName, String hostName) " +
+                    "when the username is null.");
+        }
+        try {
+            new ClackClient(null);
+        } catch (IllegalArgumentException e) {
+            System.out.println("IllegalArgumentException thrown as expected from " +
+                    "ClackClient(String userName) " +
+                    "when the username is null.");
+        }
+        System.out.println();
+
+        // Tests IllegalArgumentException thrown as expected from the constructors of ClackClient
+        // when the host name is null.
+        try {
+            new ClackClient("Anon", null, 12345);
+        } catch (IllegalArgumentException e) {
+            System.out.println("IllegalArgumentException thrown as expected from " +
+                    "ClackClient(String userName, String hostName, int port) " +
+                    "when the host name is null.");
+        }
+        try {
+            new ClackClient("Anon", null);
+        } catch (IllegalArgumentException e) {
+            System.out.println("IllegalArgumentException thrown as expected from " +
+                    "ClackClient(String userName, String hostName) " +
+                    "when the host name is null.");
+        }
+        System.out.println();
+
+        // Tests IllegalArgumentException thrown as expected from the constructors of ClackClient
+        // when the port is a number lesser than 1024.
+        try {
+            new ClackClient("Anon", "localhost", -1);
+        } catch (IllegalArgumentException e) {
+            System.out.println("IllegalArgumentException thrown as expected from " +
+                    "ClackClient(String userName, String hostName, int port) " +
+                    "when the port is a negative number.");
+        }
+        try {
+            new ClackClient("Anon", "localhost", 0);
+        } catch (IllegalArgumentException e) {
+            System.out.println("IllegalArgumentException thrown as expected from " +
+                    "ClackClient(String userName, String hostName, int port) " +
+                    "when the port is zero.");
+        }
+        try {
+            new ClackClient("Anon", "localhost", 1023);
+        } catch (IllegalArgumentException e) {
+            System.out.println("IllegalArgumentException thrown as expected from " +
+                    "ClackClient(String userName, String hostName, int port) " +
+                    "when the port is a positive number lesser than 1024.");
+        }
+        System.out.println();
 
         // getUserName()
         System.out.println("clackClient1 getUserName(): " + clackClient1.getUserName());
@@ -91,6 +158,7 @@ public class TestClackClient {
 //        clackClient11.printData();
 
         //start()
+        System.out.println("Command-line interaction tests");
         clackClient1.start();
 
         // hashCode()
