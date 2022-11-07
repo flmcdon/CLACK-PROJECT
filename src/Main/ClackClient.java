@@ -5,7 +5,7 @@ import Data.FileClackData;
 import Data.MessageClackData;
 
 import java.io.*;
-import java.net.ServerSocket;
+import java.net.*;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -99,7 +99,7 @@ public class ClackClient {
         inFromStd = new Scanner(System.in);
         while (!closeConnection) {
             try {
-                ServerSocket skt = new ServerSocket(port);
+                Socket skt = new Socket(hostName, port);
                 inFromServer = new ObjectInputStream();
                 readClientData();
                 dataToSendToServer = dataToReceiveFromServer;
