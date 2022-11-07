@@ -117,39 +117,37 @@ public abstract class ClackData  implements Serializable {
      * @return data
      */
 
-    public String encrypt(String inputStringToEncrypt, String key) {
-
-        char msg[] = inputStringToEncrypt.toCharArray();
-        int msgLen = msg.length;
-
-        char keyword[] = new char[msgLen];
-        char encryptMsg[] = new char[msgLen];
-
-//        for (int i = 0, j = 0; i < msgLen; ++i, ++j) {
-//            if (j == key.length()) {
-//                j = 0;
-//            }
-//            keyword[i] = key.charAt(j);
-//        }
-        int keyCounter = 0;
-        for (int i = 0; i < msgLen; ++i) {
-//            encryptMsg[i] = (char) (((msg[i] - 'a' + keyword[i] - 'a') % 26) + 'A');
-
-            if (Character.isLowerCase(msg[i])) {
-                encryptMsg[i] = (char) (((msg[i] - 'a' + Character.toLowerCase(keyword[keyCounter]) - 'a') % 26) + 'A');
-                keyCounter = (keyCounter + 1) % 26;
-            } else if (Character.isUpperCase(msg[i])) {
-                encryptMsg[i] = (char) (((msg[i] - 'A' + Character.toUpperCase(keyword[keyCounter]) - 'A') % 26) + 'A');
-                keyCounter = (keyCounter + 1) % 26;
-            }else {
-                encryptMsg[i] = (char) (msg[i]);
-            }
-
-
+    protected String encrypt(String inputStringToEncrypt, String key) {
+        if (inputStringToEncrypt == null) {
+            return null;
         }
 
-        String encryptString = new String(encryptMsg);
-        return encryptString;
+        final int keyLen = key.length();
+        int keyIndex = 0;
+        StringBuilder stringEncrypted = new StringBuilder();
+
+        for (int i = 0; i < inputStringToEncrypt.length(); i++) {
+            char inputCharToEncrypt = inputStringToEncrypt.charAt(i);
+            char inputCharEncrypted;
+
+            if (Character.isLowerCase(inputCharToEncrypt)) {
+                char keyChar = Character.toLowerCase(key.charAt(keyIndex));
+                inputCharEncrypted = (char) (((inputCharToEncrypt - 'a') + (keyChar - 'a')) % 26 + 'a');
+                keyIndex = (keyIndex + 1) % keyLen;
+
+            } else if (Character.isUpperCase(inputCharToEncrypt)) {
+                char keyChar = Character.toUpperCase(key.charAt(keyIndex));
+                inputCharEncrypted = (char) (((inputCharToEncrypt - 'A') + (keyChar - 'A')) % 26 + 'A');
+                keyIndex = (keyIndex + 1) % keyLen;
+
+            } else {
+                inputCharEncrypted = inputCharToEncrypt;
+            }
+
+            stringEncrypted.append(inputCharEncrypted);
+        }
+
+        return stringEncrypted.toString();
     }
 
     /**
@@ -157,34 +155,38 @@ public abstract class ClackData  implements Serializable {
      */
 
     protected String decrypt(String inputStringToDecrypt, String key) {
-        char msg[] = inputStringToDecrypt.toCharArray();
-        int msgLen = msg.length;
-
-        char keyword[] = new char[msgLen];
-        char decryptMsg[] = new char[msgLen];
-
-        for (int i = 0; i < msgLen; ++i) {
-            //decryptMsg[i] = (char) ((((msg[i] - keyword[i]) + 26) % 26) + 'A');
-            if (Character.isLowerCase(msg[i])) {
-                decryptMsg[i] = (char) ((((msg[i] - Character.toLowerCase(keyword[i])) + 26) % 26) + 'A');
-                //keyCounter = (keyCounter + 1) % 26;
-            }else if (Character.isUpperCase(msg[i])) {
-                decryptMsg[i] = (char) ((((msg[i] - Character.toUpperCase(keyword[i])) + 26) % 26) + 'A');
-            }
+        if (inputStringToDecrypt == null) {
+            return null;
         }
-        String decryptString = new String(decryptMsg);
-        return decryptString;
+
+        final int keyLen = key.length();
+        int keyIndex = 0;
+        StringBuilder stringDecrypted = new StringBuilder();
+
+        for (int i = 0; i < inputStringToDecrypt.length(); i++) {
+            char inputCharToDecrypt = inputStringToDecrypt.charAt(i);
+            char inputCharDecrypted;
+
+            if (Character.isLowerCase(inputCharToDecrypt)) {
+                char keyChar = Character.toLowerCase(key.charAt(keyIndex));
+                inputCharDecrypted = (char) ((inputCharToDecrypt - keyChar + 26) % 26 + 'a');
+                keyIndex = (keyIndex + 1) % keyLen;
+
+            } else if (Character.isUpperCase(inputCharToDecrypt)) {
+                char keyChar = Character.toUpperCase(key.charAt(keyIndex));
+                inputCharDecrypted = (char) ((inputCharToDecrypt - keyChar + 26) % 26 + 'A');
+                keyIndex = (keyIndex + 1) % keyLen;
+
+            } else {
+                inputCharDecrypted = inputCharToDecrypt;
+            }
+
+            stringDecrypted.append(inputCharDecrypted);
+        }
+
+        return stringDecrypted.toString();
     }
-
-
-    public abstract String getData();
-
-    /**
-     * Overloaded abstract getData
-     */
-
-    public abstract String getData(String key);
-    }
+}
 
     /**
      * The protected method to take a string and encrypt it. It outputs the encrypted string
