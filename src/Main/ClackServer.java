@@ -1,7 +1,12 @@
 package Main;
 
 import Data.ClackData;
+
+import java.io.*;
+import java.net.*;
 import java.util.Objects;
+
+
 
 /**
  * The ClackServer class is a blueprint for a ClackServer object that contains information about the
@@ -22,6 +27,9 @@ public class ClackServer {
     private ClackData dataToReceiveFromClient;
     private ClackData dataToSendToClient;
 
+    private ObjectInputStream inFromClient = null;
+
+    private ObjectOutputStream outToClient = null;
     /**
      * The constructor that sets the port number.
      * Should set dataToReceiveFromClient and dataToSendToClient as null.
@@ -29,6 +37,9 @@ public class ClackServer {
      * @param port an int representing the port number on the server connected to
      */
     public ClackServer( int port ){
+        if (port < 1024) {
+            throw new IllegalArgumentException("port must be greater than 1024");
+        }
         this.port = port;
         this.closeConnection = false;
         this.dataToReceiveFromClient = null;
@@ -47,7 +58,17 @@ public class ClackServer {
      * Does not return anything.
      * For now, it should have no code, just a declaration.
      */
-    public void start(){
+    public void start() {
+        try {
+            ServerSocket sskt = new ServerSocket(port);
+
+            while (!closeConnection) {
+                Socket clientSocket = sskt.accept();
+            }
+            sskt.close();
+        } catch (IOException ioe) {
+            System.err.println("io exception");
+        }
     }
     /**
      * Receives data from client.
@@ -63,8 +84,13 @@ public class ClackServer {
      * For now, it should have no code, just a declaration.
      */
     public void sendData(){
-
+        try {
+            outToClient.writeObject(dataToSendToClient);
+        } catch (IOException ioe) {
+            System.err.println("io exception");
+        }
     }
+
 
     /**
      * Returns the port.
