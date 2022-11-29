@@ -9,6 +9,8 @@ import java.net.UnknownHostException;
 
 import Data.ClackData;
 import Data.MessageClackData;
+import Data.ListUsersClackData;
+
 
 public class ServerSideClientIO implements Runnable {
     /**
@@ -19,7 +21,7 @@ public class ServerSideClientIO implements Runnable {
     /**
      * ClackData object representing data received from the client.
      */
-    private ClackData dataToRecieveFromClient;
+    private ClackData dataToReceiveFromClient;
 
     /**
      * ClackData object representing data sent to client.
@@ -27,7 +29,7 @@ public class ServerSideClientIO implements Runnable {
     private ClackData dataToSendToClient;
 
     /**
-     * ObjectInputStream to receive information from client.
+     * ObjectInputStream to receive infFormation from client.
      */
     private ObjectInputStream inFromClient = null;
 
@@ -68,12 +70,12 @@ public class ServerSideClientIO implements Runnable {
 
             while (!closeConnection) {
                 this.receiveData();
-                if (dataToRecieveFromClient instanceof ListUsersClackData) {
+                if (dataToReceiveFromClient instanceof ListUsersClackData) {
                     setDataToSendToClient(new MessageClackData("Server", this.server.LUClackData.getData(), ClackData.CONSTANT_DEFAULT_TYPE));
                     System.out.println(this.server.LUClackData.getData());
                 } else {
-                    this.server.LUClackData.addUser(dataToRecieveFromClient.getUserName());
-                    this.server.broadcast(dataToRecieveFromClient);
+                    this.server.LUClackData.addUser(dataToReceiveFromClient.getUserName());
+                    this.server.broadcast(dataToReceiveFromClient);
                 }
                 this.sendData();
             }
@@ -91,12 +93,12 @@ public class ServerSideClientIO implements Runnable {
      */
     public void receiveData() {
         try {
-            dataToRecieveFromClient = (ClackData) inFromClient.readObject();
-            System.out.println(dataToRecieveFromClient);
-            if (dataToRecieveFromClient.getData().equals("DONE")) {
+            dataToReceiveFromClient = (ClackData) inFromClient.readObject();
+            System.out.println(dataToReceiveFromClient);
+            if (dataToReceiveFromClient.getData().equals("DONE")) {
                 closeConnection = true;
                 System.out.println("USERSLIST: " + this.server.LUClackData.getData());
-                this.server.LUClackData.delUser(dataToRecieveFromClient.getUserName());
+                this.server.LUClackData.delUser(dataToReceiveFromClient.getUserName());
                 server.remove(this);
             }
         } catch (UnknownHostException uhe) {
@@ -110,7 +112,6 @@ public class ServerSideClientIO implements Runnable {
             System.err.println("class not found exception");
         }
     }
-
     /**
      * Sends data to client.
      */
@@ -133,6 +134,7 @@ public class ServerSideClientIO implements Runnable {
      * @param dataToSendToClient dataToSendToClient
      */
     public void setDataToSendToClient(ClackData dataToSendToClient) {
+
         this.dataToSendToClient = dataToSendToClient;
     }
 }

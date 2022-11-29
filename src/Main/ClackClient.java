@@ -3,12 +3,13 @@ package Main;
 import Data.ClackData;
 import Data.FileClackData;
 import Data.MessageClackData;
+import Data.ListUsersClackData;
 
 import java.io.*;
 import java.net.*;
-import java.security.Key;
 import java.util.Objects;
 import java.util.Scanner;
+
 
 /**
  * The ClackClient class represents the client user. A ClackClient object contains the username,
@@ -152,8 +153,8 @@ public class ClackClient {
             }
 
         } else if (nextToken.equals("LISTUSERS")) {
-            // Does nothing for now. Eventually, this will return a list of users.
-            // For Part 2, do not test LISTUSERS; otherwise, it may generate an error.
+            dataToSendToServer = new ListUsersClackData(userName, ClackData.CONSTANT_LISTUSERS);
+
 
         } else {
             String message = nextToken + this.inFromStd.nextLine();
