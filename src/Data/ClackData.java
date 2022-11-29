@@ -14,7 +14,7 @@ import java.util.Scanner;
   *  */
 
 public abstract class ClackData  implements Serializable {
-
+    public static final int CONSTANT_DEFAULT_TYPE = -1;
     /**
      * For giving a listing of all users connected to this session.
      */
@@ -116,7 +116,7 @@ public abstract class ClackData  implements Serializable {
      *
      * @return data
      */
-    public abstract String getData(String key);
+    public abstract String getData();
 
     protected String encrypt(String inputStringToEncrypt, String key) {
         if (inputStringToEncrypt == null) {

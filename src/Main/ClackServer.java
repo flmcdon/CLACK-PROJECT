@@ -1,11 +1,13 @@
 package Main;
 
 import Data.ClackData;
+import Data.ListUsersClackData;
 
 import java.io.*;
 import java.net.*;
-import java.security.Key;
+import java.util.ArrayList;
 import java.util.Objects;
+
 
 
 
@@ -22,17 +24,23 @@ public class ClackServer {
 
     //Declaration of local variables
     private int port;
-    public boolean closeConnection;
+
+    private static final String DEFAULT_KEY = "TIME";
+    public boolean closeConnection = false;
     private static final int defaultPort = 7000;
 
     private ClackData dataToReceiveFromClient;
     private ClackData dataToSendToClient;
 
-    private ObjectInputStream inFromClient = null;
+    //private ObjectInputStream inFromClient = null;
 
-    private ObjectOutputStream outToClient = null;
+    //private ObjectOutputStream outToClient = null;
 
-    private static final String DEFAULT_KEY = "TIME";
+    private ArrayList<ServerSideClientIO> serverSideClientIOList;
+
+    public ListUsersClackData LUClackData;
+
+
     /**
      * The constructor that sets the port number.
      * Should set dataToReceiveFromClient and dataToSendToClient as null.
@@ -43,10 +51,9 @@ public class ClackServer {
         if (port < 1024) {
             throw new IllegalArgumentException("port must be greater than 1024");
         }
+        serverSideClientIOList = new ArrayList<ServerSideClientIO>();
+        LUClackData = new ListUsersClackData();
         this.port = port;
-        this.closeConnection = false;
-        this.dataToReceiveFromClient = null;
-        this.dataToSendToClient = null;
     }
     /**
      * The default constructor that sets the port to the default port number 7000.
@@ -63,52 +70,63 @@ public class ClackServer {
      */
     public void start() {
         try {
-            System.out.println(port);
             ServerSocket sskt = new ServerSocket(port);
 
-
-            Socket clientSocket = sskt.accept();
-            inFromClient = new ObjectInputStream(clientSocket.getInputStream());
-            outToClient = new ObjectOutputStream(clientSocket.getOutputStream());
-
-            System.out.println("Connected!");
-
             while (!closeConnection) {
-                receiveData();
-                dataToSendToClient = dataToReceiveFromClient;
-                sendData();
+                Socket clientSocket = sskt.accept();
+                ServerSideClientIO newClient = new ServerSideClientIO(this, clientSocket);
+                serverSideClientIOList.add(newClient);
+
+                Thread thread = new Thread(newClient);
+                thread.start();
             }
             sskt.close();
+        } catch (UnknownHostException uhe) {
+            System.err.println("unknown host");
+        } catch (NoRouteToHostException nrthe) {
+            System.err.println("no route to host");
         } catch (IOException ioe) {
             System.err.println("io exception");
         }
     }
+
+    public synchronized void broadcast(ClackData dataToBroadcastToClients) {
+        for (ServerSideClientIO client: serverSideClientIOList) {
+            client.setDataToSendToClient(dataToBroadcastToClients);
+            client.sendData();
+        }
+    }
+
+    public synchronized void remove(ServerSideClientIO serverSideClientToRemove) {
+        serverSideClientIOList.remove(serverSideClientToRemove);
+    }
+
     /**
      * Receives data from client.
      * Does not return anything.
      * For now, it should have no code, just a declaration.
      */
+    /*
     public void receiveData(){
-
-
         try {
             dataToReceiveFromClient = (ClackData) inFromClient.readObject();
-            System.out.println(dataToReceiveFromClient.getData(DEFAULT_KEY));
             if (dataToReceiveFromClient.getType() == ClackData.CONSTANT_LOGOUT) {
                 closeConnection = true;
             }
-        } catch (IOException ioe) {
-            System.err.println("io exception");
-        } catch (ClassNotFoundException cnfe) {
-            System.err.println("class not found exception");
-        }
+            } catch(IOException ioe){
+                System.err.println("io exception");
+            } catch(ClassNotFoundException cnfe){
+                System.err.println("class not found exception");
+            }
 
     }
+    */
     /**
      * Sends data to client.
      * Does not return anything.
      * For now, it should have no code, just a declaration.
      */
+    /*
     public void sendData(){
         try {
             outToClient.writeObject(dataToSendToClient);
@@ -116,7 +134,7 @@ public class ClackServer {
             System.err.println("io exception");
         }
     }
-
+*/
 
     /**
      * Returns the port.
