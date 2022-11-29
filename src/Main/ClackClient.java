@@ -69,7 +69,7 @@ public class ClackClient {
      * @param userName a string representing the username of the client
      * @param hostName a string representing the host name of the server
      */
-    public ClackClient(String userName, String hostName) throws  IllegalArgumentException {
+    public ClackClient(String userName, String hostName) throws IllegalArgumentException {
         this(userName, hostName, DEFAULT_PORT);
     }
 
@@ -80,7 +80,7 @@ public class ClackClient {
      *
      * @param userName a string representing the username of the client
      */
-    public ClackClient(String userName)throws IllegalArgumentException {
+    public ClackClient(String userName) throws IllegalArgumentException {
         this(userName, "localhost");
     }
 
@@ -99,13 +99,22 @@ public class ClackClient {
      */
     public void start() {
         try {
+            System.out.println(hostName);
+            System.out.println(port);
             Socket skt = new Socket(hostName, port);
-            inFromServer = new ObjectInputStream(skt.getInputStream());
             outToServer = new ObjectOutputStream(skt.getOutputStream());
-                        while (!closeConnection) {
-                inFromStd = new Scanner(System.in);
+            inFromServer = new ObjectInputStream(skt.getInputStream());
+            inFromStd = new Scanner(System.in);
+
+            ClientSideServerListener clientsideserverlistener = new ClientSideServerListener(this); // create new cliensideserverlistener for this client
+            Thread clientSideThread = new Thread(clientsideserverlistener); // new thread
+            clientSideThread.start(); // start different thread to run "in parallel" with main thread
+
+            while (!closeConnection) {
                 this.readClientData();
                 this.sendData();
+                //receiveData();
+                //printData();
             }
             inFromStd.close();
             skt.close();
@@ -150,6 +159,8 @@ public class ClackClient {
             String message = nextToken + this.inFromStd.nextLine();
             this.dataToSendToServer = new MessageClackData(this.userName, message, DEFAULT_KEY,
                     ClackData.CONSTANT_SENDMESSAGE);
+
+            System.out.println(dataToSendToServer.getData(DEFAULT_KEY));
         }
     }
 
@@ -310,5 +321,13 @@ public class ClackClient {
         } catch (NumberFormatException nfe) {
             System.err.println("number format exception (port needs to be a number)");
         }
+    }
+
+
+    /**
+     * @return closeConnection
+     */
+    public boolean getCloseConnection() {
+        return closeConnection;
     }
 }

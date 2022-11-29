@@ -21,6 +21,8 @@ public class ClackServer {
 
     //Declaration of local variables
     private int port;
+
+    private static final String DEFAULT_KEY = "TIME";
     public boolean closeConnection;
     private static final int defaultPort = 7000;
 
@@ -61,12 +63,12 @@ public class ClackServer {
     public void start() {
         try {
             ServerSocket sskt = new ServerSocket(port);
-            Socket socket = sskt.accept();
-            inFromClient = new ObjectInputStream(new BufferedInputStream(socket.getInputStream()));
-            outToClient = new ObjectOutputStream(new BufferedOutputStream(socket.getOutputStream()));
+            Socket clientSocket = sskt.accept();
+            inFromClient = new ObjectInputStream(new BufferedInputStream(clientSocket.getInputStream()));
+            outToClient = new ObjectOutputStream(new BufferedOutputStream(clientSocket.getOutputStream()));
 
             while (!closeConnection) {
-                Socket clientSocket = sskt.accept();
+
             }
             sskt.close();
         } catch (IOException ioe) {
@@ -79,6 +81,16 @@ public class ClackServer {
      * For now, it should have no code, just a declaration.
      */
     public void receiveData(){
+        try {
+            dataToReceiveFromClient = (ClackData) inFromClient.readObject();
+            if (dataToReceiveFromClient.getType() == ClackData.CONSTANT_LOGOUT) {
+                closeConnection = true;
+            }
+            } catch(IOException ioe){
+                System.err.println("io exception");
+            } catch(ClassNotFoundException cnfe){
+                System.err.println("class not found exception");
+            }
 
     }
     /**
