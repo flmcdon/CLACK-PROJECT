@@ -4,6 +4,7 @@ import Data.ClackData;
 
 import java.io.*;
 import java.net.*;
+import java.security.Key;
 import java.util.Objects;
 
 
@@ -30,6 +31,8 @@ public class ClackServer {
     private ObjectInputStream inFromClient = null;
 
     private ObjectOutputStream outToClient = null;
+
+    private static final String DEFAULT_KEY = "TIME";
     /**
      * The constructor that sets the port number.
      * Should set dataToReceiveFromClient and dataToSendToClient as null.
@@ -60,13 +63,20 @@ public class ClackServer {
      */
     public void start() {
         try {
+            System.out.println(port);
             ServerSocket sskt = new ServerSocket(port);
-            Socket socket = sskt.accept();
-            inFromClient = new ObjectInputStream(new BufferedInputStream(socket.getInputStream()));
-            outToClient = new ObjectOutputStream(new BufferedOutputStream(socket.getOutputStream()));
+
+
+            Socket clientSocket = sskt.accept();
+            inFromClient = new ObjectInputStream(clientSocket.getInputStream());
+            outToClient = new ObjectOutputStream(clientSocket.getOutputStream());
+
+            System.out.println("Connected!");
 
             while (!closeConnection) {
-                Socket clientSocket = sskt.accept();
+                receiveData();
+                dataToSendToClient = dataToReceiveFromClient;
+                sendData();
             }
             sskt.close();
         } catch (IOException ioe) {
@@ -79,6 +89,19 @@ public class ClackServer {
      * For now, it should have no code, just a declaration.
      */
     public void receiveData(){
+
+
+        try {
+            dataToReceiveFromClient = (ClackData) inFromClient.readObject();
+            System.out.println(dataToReceiveFromClient.getData(DEFAULT_KEY));
+            if (dataToReceiveFromClient.getType() == ClackData.CONSTANT_LOGOUT) {
+                closeConnection = true;
+            }
+        } catch (IOException ioe) {
+            System.err.println("io exception");
+        } catch (ClassNotFoundException cnfe) {
+            System.err.println("class not found exception");
+        }
 
     }
     /**
