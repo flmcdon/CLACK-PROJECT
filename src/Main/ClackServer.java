@@ -74,6 +74,7 @@ public class ClackServer {
 
             while (!closeConnection) {
                 Socket clientSocket = sskt.accept();
+                System.out.println("A client connected.");
                 ServerSideClientIO newClient = new ServerSideClientIO(this, clientSocket);
                 serverSideClientIOList.add(newClient);
 
