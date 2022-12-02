@@ -120,7 +120,7 @@ public class ClackClient {
             inFromStd.close();
             skt.close();
         } catch (IOException ioe) {
-            System.err.println("io exception");
+            System.err.println("io exception in start(): " + ioe.getMessage());
         }
 
     }
