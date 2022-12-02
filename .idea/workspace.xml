@@ -7,8 +7,6 @@
     <list default="true" id="a56a04fc-9b7e-4cad-a7f0-3e117f70d0d6" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Data/ClackData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Data/ClackData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main/ClackServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main/ClackServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main/ServerSideClientIO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main/ServerSideClientIO.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,7 +55,7 @@
       <recent name="C:\Users\floyd\Documents\School\Fall 2022\CS242\CS242-Clack\src\Test" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.ClackServer">
+  <component name="RunManager" selected="Application.ClackClient">
     <configuration name="ClackClient" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main.ClackClient" />
       <module name="CS242-Clack" />
