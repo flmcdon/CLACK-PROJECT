@@ -13,6 +13,7 @@ import Data.ListUsersClackData;
 
 
 public class ServerSideClientIO implements Runnable {
+    private static final String DEFAULT_KEY = "TIME";
     /**
      * Boolean representing whether connection is closed or not.
      */
@@ -71,13 +72,13 @@ public class ServerSideClientIO implements Runnable {
             while (!closeConnection) {
                 this.receiveData();
                 if (dataToReceiveFromClient instanceof ListUsersClackData) {
-                    setDataToSendToClient(new MessageClackData("Server", this.server.LUClackData.getData(), ClackData.CONSTANT_DEFAULT_TYPE));
-                    System.out.println(this.server.LUClackData.getData());
+                    this.server.broadcast(new MessageClackData("Server", this.server.LUClackData.getData(), DEFAULT_KEY,ClackData.CONSTANT_DEFAULT_TYPE));
+                    System.out.println(this.server.LUClackData.getData(DEFAULT_KEY));
                 } else {
                     this.server.LUClackData.addUser(dataToReceiveFromClient.getUserName());
                     this.server.broadcast(dataToReceiveFromClient);
                 }
-                this.sendData();
+//                this.sendData();
             }
         } catch (UnknownHostException uhe) {
             System.err.println("unknown host");
